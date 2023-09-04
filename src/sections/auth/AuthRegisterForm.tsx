@@ -18,6 +18,7 @@ import SvgColor from '../../components/svg-color';
 type FormValuesProps = {
   email: string;
   password: string;
+  confirmPassword: string;
   username: string;
   afterSubmit?: string;
 };
@@ -30,7 +31,12 @@ export default function AuthRegisterForm() {
   const RegisterSchema = Yup.object().shape({
     username: Yup.string().required('First name required'),
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string().required('Password is required'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .required('Confirm password is required')
+      .oneOf([Yup.ref('password')], 'Passwords must match'),
   });
 
   const defaultValues = {
@@ -128,7 +134,7 @@ export default function AuthRegisterForm() {
         />
 
         <RHFTextField
-          name="confirm-password"
+          name="confirmPassword"
           label="Confirm Password"
           autoComplete="new-password"
           type={showPassword ? 'text' : 'password'}

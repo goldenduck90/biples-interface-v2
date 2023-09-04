@@ -1,16 +1,16 @@
 // next
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { AppBar, Toolbar, Box, BoxProps, Link } from '@mui/material';
+import { AppBar, Toolbar, Box, BoxProps } from '@mui/material';
 // config
 import { HEADER } from '../../config-global';
 // utils
 import { bgBlur } from '../../utils/cssStyles';
 // routes
-import { PATH_PAGE } from '../../routes/paths';
+// import { PATH_PAGE } from '../../routes/paths';
 // components
-import Logo from '../../components/logo';
+import Image from '../../components/image';
 
 // ----------------------------------------------------------------------
 
@@ -42,11 +42,11 @@ export default function Header({ isOffset }: Props) {
           }),
         }}
       >
-        <Logo />
+        <Image alt="" src="/logo/logo_single.svg" sx={{ height: 42, width: 'auto' }} />
 
-        <Link component={NextLink} href={PATH_PAGE.faqs} variant="subtitle2" color="inherit">
+        {/* <Link component={NextLink} href={PATH_PAGE.faqs} variant="subtitle2" color="inherit">
           Need Help?
-        </Link>
+        </Link> */}
       </Toolbar>
 
       {isOffset && <Shadow />}
