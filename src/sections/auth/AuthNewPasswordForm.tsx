@@ -123,6 +123,7 @@ export default function AuthNewPasswordForm() {
         <RHFTextField
           name="password"
           label="Password"
+          autoComplete="new-password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -138,6 +139,7 @@ export default function AuthNewPasswordForm() {
         <RHFTextField
           name="confirmPassword"
           label="Confirm New Password"
+          autoComplete="new-password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
