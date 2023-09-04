@@ -8,10 +8,12 @@ import { StyledRoot, StyledContent } from './styles';
 // ----------------------------------------------------------------------
 
 type Props = {
+  title?: string;
+  illustration?: string;
   children: React.ReactNode;
 };
 
-export default function LoginLayout({ children }: Props) {
+export default function LoginLayout({ children, illustration, title }: Props) {
   return (
     <StyledRoot>
       <Image

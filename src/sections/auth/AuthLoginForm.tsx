@@ -86,11 +86,12 @@ export default function AuthLoginForm() {
         <RHFTextField
           name="email"
           label="Email address"
+          autoComplete="email"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 <SvgColor
-                  src="/assets/images/auth/user.svg"
+                  src="/assets/images/auth/email.svg"
                   sx={{ width: 12, height: 12, color: '#5E6366' }}
                 />
               </InputAdornment>
@@ -101,6 +102,7 @@ export default function AuthLoginForm() {
         <RHFTextField
           name="password"
           label="Password"
+          autoComplete="current-password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             startAdornment: (

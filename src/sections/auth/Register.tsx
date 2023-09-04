@@ -7,44 +7,50 @@ import LoginLayout from '../../layouts/login';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 //
-import AuthWithSocial from './AuthWithSocial';
 import AuthRegisterForm from './AuthRegisterForm';
 
 // ----------------------------------------------------------------------
 
 export default function Register() {
   return (
-    <LoginLayout title="Manage the job more effectively with Minimal">
-      <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
-        <Typography variant="h4">Get started absolutely free.</Typography>
-
-        <Stack direction="row" spacing={0.5}>
-          <Typography variant="body2"> Already have an account? </Typography>
-
-          <Link component={NextLink} href={PATH_AUTH.login} variant="subtitle2">
-            Sign in
-          </Link>
-        </Stack>
-      </Stack>
-
+    <LoginLayout>
       <AuthRegisterForm />
+
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={0.5}
+        sx={{ mt: 2 }}
+      >
+        <Typography variant="body2"> Already have an account? </Typography>
+
+        <Link
+          component={NextLink}
+          href={PATH_AUTH.login}
+          variant="subtitle2"
+          underline="always"
+          color="#FB15FF"
+        >
+          Sign in
+        </Link>
+      </Stack>
 
       <Typography
         component="div"
-        sx={{ color: 'text.secondary', mt: 3, typography: 'caption', textAlign: 'center' }}
+        fontSize={8}
+        sx={{ color: 'text.secondary', mt: 2, textAlign: 'center' }}
       >
-        {'By signing up, I agree to '}
-        <Link underline="always" color="text.primary">
-          Terms of Service
+        {'*by clicking “sign up” button you are agree with our '}
+        <Link underline="always" component={NextLink} href={PATH_AUTH.register}>
+          privacy policy
         </Link>
         {' and '}
-        <Link underline="always" color="text.primary">
-          Privacy Policy
+        <Link underline="always" component={NextLink} href={PATH_AUTH.register}>
+          terms & condition.
         </Link>
         .
       </Typography>
-
-      <AuthWithSocial />
     </LoginLayout>
   );
 }

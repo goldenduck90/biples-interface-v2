@@ -11,14 +11,14 @@ import { useAuthContext } from '../../auth/useAuthContext';
 // components
 import Iconify from '../../components/iconify';
 import FormProvider, { RHFTextField } from '../../components/hook-form';
+import SvgColor from '../../components/svg-color';
 
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  username: string;
   afterSubmit?: string;
 };
 
@@ -28,15 +28,13 @@ export default function AuthRegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string().required('First name required'),
-    lastName: Yup.string().required('Last name required'),
+    username: Yup.string().required('First name required'),
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
     password: Yup.string().required('Password is required'),
   });
 
   const defaultValues = {
-    firstName: '',
-    lastName: '',
+    username: '',
     email: '',
     password: '',
   };
@@ -56,7 +54,7 @@ export default function AuthRegisterForm() {
   const onSubmit = async (data: FormValuesProps) => {
     try {
       if (register) {
-        await register(data.email, data.password, data.firstName, data.lastName);
+        await register(data.email, data.password, data.username);
       }
     } catch (error) {
       console.error(error);
@@ -73,18 +71,76 @@ export default function AuthRegisterForm() {
       <Stack spacing={2.5}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <RHFTextField name="firstName" label="First name" />
-          <RHFTextField name="lastName" label="Last name" />
-        </Stack>
+        <RHFTextField
+          name="username"
+          label="User name"
+          autoComplete="username"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/user.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
 
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField
+          name="email"
+          label="Email address"
+          autoComplete="email"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/email.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
 
         <RHFTextField
           name="password"
           label="Password"
+          autoComplete="new-password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/lock.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <RHFTextField
+          name="confirm-password"
+          label="Confirm Password"
+          autoComplete="new-password"
+          type={showPassword ? 'text' : 'password'}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/lock.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
@@ -103,15 +159,11 @@ export default function AuthRegisterForm() {
           variant="contained"
           loading={isSubmitting || isSubmitSuccessful}
           sx={{
-            bgcolor: 'text.primary',
-            color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
-            '&:hover': {
-              bgcolor: 'text.primary',
-              color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
-            },
+            background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+            color: 'common.white',
           }}
         >
-          Create account
+          Sign Up
         </LoadingButton>
       </Stack>
     </FormProvider>
