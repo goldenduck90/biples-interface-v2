@@ -1,14 +1,21 @@
 // @mui
 import { Divider, IconButton, Stack } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
 // auth
 import { useAuthContext } from '../../auth/useAuthContext';
 // components
-import Iconify from '../../components/iconify';
+import Image from '../../components/image';
 
 // ----------------------------------------------------------------------
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  borderRadius: '10px',
+  width: '54px',
+  height: '54px',
+  backgroundColor: alpha('#686868', 0.22),
+}));
 
 export default function AuthWithSocial() {
-  const { loginWithGoogle, loginWithGithub, loginWithTwitter } = useAuthContext();
+  const { loginWithGoogle, loginWithTwitter } = useAuthContext();
 
   const handleGoogleLogin = async () => {
     try {
@@ -16,17 +23,6 @@ export default function AuthWithSocial() {
         loginWithGoogle();
       }
       console.log('GOOGLE LOGIN');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleGithubLogin = async () => {
-    try {
-      if (loginWithGithub) {
-        loginWithGithub();
-      }
-      console.log('GITHUB LOGIN');
     } catch (error) {
       console.error(error);
     }
@@ -59,17 +55,49 @@ export default function AuthWithSocial() {
       </Divider>
 
       <Stack direction="row" justifyContent="center" spacing={2}>
-        <IconButton onClick={handleGoogleLogin}>
-          <Iconify icon="eva:google-fill" color="#DF3E30" />
-        </IconButton>
+        <StyledIconButton onClick={handleGoogleLogin}>
+          <Image
+            src="/assets/images/auth/metamask.svg"
+            sx={{ width: 'auto', height: 30 }}
+            style={{ cursor: 'pointer' }}
+            alt="social-metamask"
+          />
+        </StyledIconButton>
 
-        <IconButton color="inherit" onClick={handleGithubLogin}>
-          <Iconify icon="eva:github-fill" />
-        </IconButton>
+        <StyledIconButton onClick={handleGoogleLogin}>
+          <Image
+            src="/assets/images/auth/trustwallet.svg"
+            sx={{ width: 'auto', height: 30 }}
+            style={{ cursor: 'pointer' }}
+            alt="social-trustwallet"
+          />
+        </StyledIconButton>
+        <StyledIconButton onClick={handleGoogleLogin}>
+          <Image
+            src="/assets/images/auth/coinbase.svg"
+            sx={{ width: 'auto', height: 30 }}
+            style={{ cursor: 'pointer' }}
+            alt="social-coinbase"
+          />
+        </StyledIconButton>
 
-        <IconButton onClick={handleTwitterLogin}>
-          <Iconify icon="eva:twitter-fill" color="#1C9CEA" />
-        </IconButton>
+        <StyledIconButton color="inherit" onClick={handleGoogleLogin}>
+          <Image
+            src="/assets/images/auth/google.svg"
+            sx={{ width: 'auto', height: 30 }}
+            style={{ cursor: 'pointer' }}
+            alt="social-google"
+          />
+        </StyledIconButton>
+
+        <StyledIconButton onClick={handleTwitterLogin}>
+          <Image
+            src="/assets/images/auth/twitter.svg"
+            sx={{ width: 'auto', height: 30 }}
+            style={{ cursor: 'pointer' }}
+            alt="social-twitter"
+          />
+        </StyledIconButton>
       </Stack>
     </div>
   );

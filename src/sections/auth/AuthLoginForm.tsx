@@ -6,7 +6,15 @@ import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Link, Stack, Alert, IconButton, InputAdornment } from '@mui/material';
+import {
+  Link,
+  Stack,
+  Alert,
+  IconButton,
+  InputAdornment,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
@@ -15,7 +23,8 @@ import { useAuthContext } from '../../auth/useAuthContext';
 // components
 import Iconify from '../../components/iconify';
 import FormProvider, { RHFTextField } from '../../components/hook-form';
-
+import SvgColor from '../../components/svg-color';
+import Image from '../../components/image';
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
@@ -28,6 +37,11 @@ export default function AuthLoginForm() {
   const { login } = useAuthContext();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [checkedVisible, setCheckedVisible] = useState<boolean>(true);
+
+  const handleChangeVisible = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckedVisible(event.target.checked);
+  };
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
@@ -69,13 +83,34 @@ export default function AuthLoginForm() {
       <Stack spacing={3}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField
+          name="email"
+          label="Email address"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/user.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
+          }}
+        />
 
         <RHFTextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/auth/lock.svg"
+                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                />
+              </InputAdornment>
+            ),
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
@@ -87,14 +122,34 @@ export default function AuthLoginForm() {
         />
       </Stack>
 
-      <Stack alignItems="flex-end" sx={{ my: 2 }}>
-        <Link
-          component={NextLink}
-          href={PATH_AUTH.resetPassword}
-          variant="body2"
-          color="inherit"
-          underline="always"
-        >
+      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ my: 2 }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={checkedVisible}
+              onChange={handleChangeVisible}
+              icon={
+                <Image
+                  disabledEffect
+                  src="/assets/images/auth/unchecked.svg"
+                  alt=""
+                  sx={{ width: 'auto', height: 14 }}
+                />
+              }
+              checkedIcon={
+                <Image
+                  disabledEffect
+                  src="/assets/images/auth/checked.svg"
+                  alt=""
+                  sx={{ width: 'auto', height: 14 }}
+                />
+              }
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+          }
+          label="Remember me"
+        />
+        <Link component={NextLink} href={PATH_AUTH.resetPassword} variant="subtitle2">
           Forgot password?
         </Link>
       </Stack>
@@ -107,15 +162,11 @@ export default function AuthLoginForm() {
         variant="contained"
         loading={isSubmitSuccessful || isSubmitting}
         sx={{
-          bgcolor: 'text.primary',
-          color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
-          '&:hover': {
-            bgcolor: 'text.primary',
-            color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
-          },
+          background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+          color: 'common.white',
         }}
       >
-        Login
+        Sign in
       </LoadingButton>
     </FormProvider>
   );
