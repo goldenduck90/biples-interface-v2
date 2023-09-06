@@ -10,9 +10,9 @@ import { useSettingsContext } from '../../components/settings';
 //
 import Main from './Main';
 import Header from './header';
-import NavMini from './nav/NavMini';
+import NavMiniRight from './nav/NavMiniRight';
 import NavVertical from './nav/NavVertical';
-import NavHorizontal from './nav/NavHorizontal';
+import NavVerticalRight from './nav/NavVerticalRight';
 
 // ----------------------------------------------------------------------
 
@@ -26,8 +26,7 @@ export default function DashboardLayout({ children }: Props) {
   const isDesktop = useResponsive('up', 'lg');
 
   const [open, setOpen] = useState(false);
-
-  const isNavHorizontal = themeLayout === 'horizontal';
+  const [openRight, setOpenRight] = useState(false);
 
   const isNavMini = themeLayout === 'mini';
 
@@ -39,25 +38,24 @@ export default function DashboardLayout({ children }: Props) {
     setOpen(false);
   };
 
+  const handleOpenRight = () => {
+    setOpenRight(true);
+  };
+
+  const handleCloseRight = () => {
+    setOpenRight(false);
+  };
+
   const renderNavVertical = <NavVertical openNav={open} onCloseNav={handleClose} />;
+  const renderNavVerticalRight = (
+    <NavVerticalRight openNav={openRight} onCloseNav={handleCloseRight} />
+  );
 
   const renderContent = () => {
-    if (isNavHorizontal) {
-      return (
-        <>
-          <Header onOpenNav={handleOpen} />
-
-          {isDesktop ? <NavHorizontal /> : renderNavVertical}
-
-          <Main>{children}</Main>
-        </>
-      );
-    }
-
     if (isNavMini) {
       return (
         <>
-          <Header onOpenNav={handleOpen} />
+          <Header onOpenNav={handleOpen} onOpenNavRight={handleOpenRight} />
 
           <Box
             sx={{
@@ -65,9 +63,11 @@ export default function DashboardLayout({ children }: Props) {
               minHeight: { lg: 1 },
             }}
           >
-            {isDesktop ? <NavMini /> : renderNavVertical}
+            {renderNavVertical}
 
             <Main>{children}</Main>
+
+            {isDesktop ? <NavMiniRight /> : renderNavVerticalRight}
           </Box>
         </>
       );
@@ -75,7 +75,7 @@ export default function DashboardLayout({ children }: Props) {
 
     return (
       <>
-        <Header onOpenNav={handleOpen} />
+        <Header onOpenNav={handleOpen} onOpenNavRight={handleOpenRight} />
 
         <Box
           sx={{
@@ -86,6 +86,8 @@ export default function DashboardLayout({ children }: Props) {
           {renderNavVertical}
 
           <Main>{children}</Main>
+
+          {renderNavVerticalRight}
         </Box>
       </>
     );

@@ -26,29 +26,29 @@ const GREY = {
   200: '#F4F6F8',
   300: '#DFE3E8',
   400: '#C4CDD5',
-  500: '#919EAB',
+  500: '#434343',
   600: '#637381',
   700: '#454F5B',
   800: '#212B36',
-  900: '#161C24',
+  900: '#111111',
 };
 
 const PRIMARY = {
-  lighter: '#C8FACD',
-  light: '#5BE584',
-  main: '#00AB55',
-  dark: '#007B55',
-  darker: '#005249',
-  contrastText: '#FFFFFF',
+  // lighter: '#C8FACD',
+  // light: '#5BE584',
+  main: alpha('#686868', 0.22),
+  // dark: '#007B55',
+  // darker: '#005249',
+  contrastText: '#F0F0F0',
 };
 
 const SECONDARY = {
-  lighter: '#D6E4FF',
-  light: '#84A9FF',
-  main: '#3366FF',
-  dark: '#1939B7',
-  darker: '#091A7A',
-  contrastText: '#FFFFFF',
+  // lighter: '#D6E4FF',
+  // light: '#84A9FF',
+  main: alpha('#000000', 0.43),
+  // dark: '#1939B7',
+  // darker: '#091A7A',
+  contrastText: alpha('#000000', 0.43),
 };
 
 const INFO = {

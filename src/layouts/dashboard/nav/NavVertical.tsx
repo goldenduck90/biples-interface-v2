@@ -10,12 +10,15 @@ import { NAV } from '../../../config-global';
 // components
 import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
-import { NavSectionVertical } from '../../../components/nav-section';
+// import { NavSectionVertical } from '../../../components/nav-section';
 //
-import navConfig from './config-navigation';
-import NavDocs from './NavDocs';
+// import navConfig from './config-navigation';
+// import NavDocs from './NavDocs';
 import NavAccount from './NavAccount';
-import NavToggleButton from './NavToggleButton';
+import NFTGallery from './NFTGallery';
+import NFTSettings from './NFTSettings';
+import ColorMode from './ColorMode';
+// import NavToggleButton from './NavToggleButton';
 
 // ----------------------------------------------------------------------
 
@@ -56,16 +59,30 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           flexShrink: 0,
         }}
       >
-        <Logo />
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Logo />
+        </Box>
 
         <NavAccount />
       </Stack>
 
-      <NavSectionVertical data={navConfig} />
+      {/* <NavSectionVertical data={navConfig} /> */}
+
+      <Box sx={{ mt: 2.5 }}>
+        <NFTGallery />
+      </Box>
+
+      <Box sx={{ mt: 2.5 }}>
+        <NFTSettings />
+      </Box>
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <NavDocs />
+      <Box sx={{ mt: 2.5, pb: 5 }}>
+        <ColorMode />
+      </Box>
+
+      {/* <NavDocs /> */}
     </Scrollbar>
   );
 
@@ -77,7 +94,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         width: { lg: NAV.W_DASHBOARD },
       }}
     >
-      <NavToggleButton />
+      {/* <NavToggleButton /> */}
 
       {isDesktop ? (
         <Drawer
@@ -88,7 +105,8 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
               zIndex: 0,
               width: NAV.W_DASHBOARD,
               bgcolor: 'transparent',
-              borderRightStyle: 'dashed',
+              // borderRightStyle: 'dashed',
+              border: 'none',
             },
           }}
         >

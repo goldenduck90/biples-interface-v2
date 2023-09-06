@@ -9,7 +9,6 @@ import useResponsive from '../../../hooks/useResponsive';
 // config
 import { HEADER, NAV } from '../../../config-global';
 // components
-import Logo from '../../../components/logo';
 import Iconify from '../../../components/iconify';
 import { useSettingsContext } from '../../../components/settings';
 //
@@ -23,25 +22,22 @@ import NotificationsPopover from './NotificationsPopover';
 
 type Props = {
   onOpenNav?: VoidFunction;
+  onOpenNavRight?: VoidFunction;
 };
 
-export default function Header({ onOpenNav }: Props) {
+export default function Header({ onOpenNav, onOpenNavRight }: Props) {
   const theme = useTheme();
 
   const { themeLayout } = useSettingsContext();
-
-  const isNavHorizontal = themeLayout === 'horizontal';
 
   const isNavMini = themeLayout === 'mini';
 
   const isDesktop = useResponsive('up', 'lg');
 
-  const isOffset = useOffSetTop(HEADER.H_DASHBOARD_DESKTOP) && !isNavHorizontal;
+  const isOffset = useOffSetTop(HEADER.H_DASHBOARD_DESKTOP);
 
   const renderContent = (
     <>
-      {isDesktop && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
-
       {!isDesktop && (
         <IconButton onClick={onOpenNav} sx={{ mr: 1, color: 'text.primary' }}>
           <Iconify icon="eva:menu-2-fill" />
@@ -65,6 +61,12 @@ export default function Header({ onOpenNav }: Props) {
 
         <AccountPopover />
       </Stack>
+
+      {!isDesktop && (
+        <IconButton onClick={onOpenNavRight} sx={{ ml: 1, color: 'text.primary' }}>
+          <Iconify icon="eva:menu-2-fill" />
+        </IconButton>
+      )}
     </>
   );
 
@@ -81,19 +83,15 @@ export default function Header({ onOpenNav }: Props) {
           duration: theme.transitions.duration.shorter,
         }),
         ...(isDesktop && {
-          width: `calc(100% - ${NAV.W_DASHBOARD + 1}px)`,
+          width: `calc(100% - ${NAV.W_DASHBOARD + NAV.W_DASHBOARD + 1}px)`,
+          mr: `${NAV.W_DASHBOARD + 1}px`,
           height: HEADER.H_DASHBOARD_DESKTOP,
           ...(isOffset && {
             height: HEADER.H_DASHBOARD_DESKTOP_OFFSET,
           }),
-          ...(isNavHorizontal && {
-            width: 1,
-            bgcolor: 'background.default',
-            height: HEADER.H_DASHBOARD_DESKTOP_OFFSET,
-            borderBottom: `dashed 1px ${theme.palette.divider}`,
-          }),
           ...(isNavMini && {
-            width: `calc(100% - ${NAV.W_DASHBOARD_MINI + 1}px)`,
+            width: `calc(100% - ${NAV.W_DASHBOARD + NAV.W_DASHBOARD_MINI + 1}px)`,
+            mr: `${NAV.W_DASHBOARD_MINI + 1}px`,
           }),
         }),
       }}

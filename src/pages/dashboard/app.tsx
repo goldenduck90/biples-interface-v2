@@ -53,7 +53,7 @@ export default function GeneralAppPage() {
       </Head>
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Grid container spacing={3}>
+        {/* <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
             <AppWelcome
               title={`Welcome back! \n ${user?.displayName}`}
@@ -205,7 +205,8 @@ export default function GeneralAppPage() {
               />
             </Stack>
           </Grid>
-        </Grid>
+        </Grid> */}
+        Home page
       </Container>
     </>
   );
