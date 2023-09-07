@@ -9,7 +9,7 @@ import { useSettingsContext } from '../../components/settings';
 
 // ----------------------------------------------------------------------
 
-const SPACING = 40;
+const SPACING = 15;
 
 export default function Main({ children, sx, ...other }: BoxProps) {
   const { themeLayout } = useSettingsContext();

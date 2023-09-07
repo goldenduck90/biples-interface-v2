@@ -50,12 +50,12 @@ export const FEATURED_COMMUNITIES = [
     members: 11000,
     image: '/assets/images/motion-design-back.png',
   },
-  {
-    id: 3,
-    name: 'Bitcoin chat',
-    description:
-      "Bitcoin is an open source censorship-resistant peer-to-peer immutable network.Don't trust; verify. Not your keys; not your coins.",
-    members: 300000,
-    image: '/assets/images/bitcoin-chat-back.png',
-  },
+  // {
+  //   id: 3,
+  //   name: 'Bitcoin chat',
+  //   description:
+  //     "Bitcoin is an open source censorship-resistant peer-to-peer immutable network.Don't trust; verify. Not your keys; not your coins.",
+  //   members: 300000,
+  //   image: '/assets/images/bitcoin-chat-back.png',
+  // },
 ];

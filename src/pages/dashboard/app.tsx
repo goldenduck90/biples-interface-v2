@@ -1,37 +1,37 @@
 // next
 import Head from 'next/head';
 // @mui
-import { useTheme } from '@mui/material/styles';
-import { Container, Grid, Stack, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container, InputAdornment, OutlinedInput, Box } from '@mui/material';
 // auth
-import { useAuthContext } from '../../auth/useAuthContext';
+// import { useAuthContext } from '../../auth/useAuthContext';
 // layouts
 import DashboardLayout from '../../layouts/dashboard';
 // _mock_
-import {
-  _appFeatured,
-  _appAuthors,
-  _appInstalled,
-  _appRelated,
-  _appInvoices,
-} from '../../_mock/arrays';
+// import {
+//   _appFeatured,
+//   _appAuthors,
+//   _appInstalled,
+//   _appRelated,
+//   _appInvoices,
+// } from '../../_mock/arrays';
 // components
 import { useSettingsContext } from '../../components/settings';
 // sections
 import {
-  AppWidget,
-  AppWelcome,
-  AppFeatured,
-  AppNewInvoice,
-  AppTopAuthors,
-  AppTopRelated,
-  AppAreaInstalled,
-  AppWidgetSummary,
-  AppCurrentDownload,
-  AppTopInstalledCountries,
+  SearchResult,
+  // SearchBar,
+  FeaturedCommunity,
+  CuratedCommunity,
 } from '../../sections/@dashboard/general/app';
-// assets
-import { SeoIllustration } from '../../assets/illustrations';
+import SvgColor from '../../components/svg-color';
+
+const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  padding: '0px 16px',
+  textAlign: 'center',
+  borderRadius: '10px',
+}));
 
 // ----------------------------------------------------------------------
 
@@ -40,16 +40,16 @@ GeneralAppPage.getLayout = (page: React.ReactElement) => <DashboardLayout>{page}
 // ----------------------------------------------------------------------
 
 export default function GeneralAppPage() {
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const { themeStretch } = useSettingsContext();
 
   return (
     <>
       <Head>
-        <title> General: App | Minimal UI</title>
+        <title> Home | Biples</title>
       </Head>
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
@@ -206,7 +206,30 @@ export default function GeneralAppPage() {
             </Stack>
           </Grid>
         </Grid> */}
-        Home page
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            px: 4,
+            py: 3,
+            bgcolor: 'primary.main',
+            borderRadius: '15px',
+          }}
+        >
+          <StyledOutlinedInput
+            defaultValue=""
+            fullWidth
+            placeholder="Explorer"
+            startAdornment={
+              <InputAdornment position="start">
+                <SvgColor src="/assets/images/svgs/search.svg" sx={{ width: 12, height: 12 }} />
+              </InputAdornment>
+            }
+          />
+          <SearchResult />
+          <FeaturedCommunity />
+          <CuratedCommunity />
+        </Box>
       </Container>
     </>
   );
