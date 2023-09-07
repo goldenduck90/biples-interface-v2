@@ -1,29 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
-import SimpleBar from 'simplebar-react';
 import SvgColor from '../../../../components/svg-color';
 import CommunityCard from './CommunityCard';
 import { FEATURED_COMMUNITIES } from '../../../../constants/communities';
-
-const Scrollbar = styled(SimpleBar)(({ theme }) => ({
-  '& .simplebar-scrollbar': {
-    '&:before': {
-      backgroundColor: theme.palette.primary.contrastText,
-    },
-    '&.simplebar-visible:before': {
-      opacity: 1,
-    },
-  },
-}));
-
-const StyledRootBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '10px',
-  marginTop: '16px',
-}));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
@@ -52,7 +31,7 @@ const FeaturedCommunity = () => {
         >
           <StyledTypography mr={1}>See all</StyledTypography>
           <SvgColor
-            src="assets/images/svgs/right_arrow.svg"
+            src="/assets/images/svgs/right_arrow.svg"
             sx={{
               width: 8,
               height: 8,
@@ -61,23 +40,11 @@ const FeaturedCommunity = () => {
           />
         </Box>
       </Box>
-      <StyledRootBox>
-        <Scrollbar
-          sx={{
-            width: 1,
-            border: 'none',
-            '& .simplebar-content': {
-              width: 1,
-              display: 'flex',
-              flexDirection: 'row',
-            },
-          }}
-        >
-          {FEATURED_COMMUNITIES.map((community) => (
-            <CommunityCard key={community.id} community={community} />
-          ))}
-        </Scrollbar>
-      </StyledRootBox>
+      <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 2 }}>
+        {FEATURED_COMMUNITIES.map((community) => (
+          <CommunityCard key={community.id} community={community} />
+        ))}
+      </Stack>
     </Box>
   );
 };

@@ -177,7 +177,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 >
                   <Image
                     disabledEffect
-                    src="assets/images/svgs/metamask.svg"
+                    src="/assets/images/svgs/metamask.svg"
                     alt="Metamask"
                     sx={{ width: 30, height: 30 }}
                   />
@@ -192,7 +192,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 </Box>
                 <Image
                   disabledEffect
-                  src="assets/images/svgs/link.svg"
+                  src="/assets/images/svgs/link.svg"
                   alt="link"
                   sx={{ width: 18, height: 18 }}
                 />
@@ -205,7 +205,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 >
                   <Image
                     disabledEffect
-                    src="assets/images/svgs/trustwallet.svg"
+                    src="/assets/images/svgs/trustwallet.svg"
                     alt="TrustWallet"
                     sx={{ width: 30, height: 30 }}
                   />
@@ -220,7 +220,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 </Box>
                 <Image
                   disabledEffect
-                  src="assets/images/svgs/link.svg"
+                  src="/assets/images/svgs/link.svg"
                   alt="link"
                   sx={{ width: 18, height: 18 }}
                 />
@@ -232,7 +232,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                   }}
                 >
                   <Image
-                    src="assets/images/svgs/coinbase.svg"
+                    src="/assets/images/svgs/coinbase.svg"
                     width={30}
                     height={30}
                     alt="Coinbase"
@@ -248,7 +248,7 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 </Box>
                 <Image
                   disabledEffect
-                  src="assets/images/svgs/link.svg"
+                  src="/assets/images/svgs/link.svg"
                   alt="link"
                   sx={{ width: 18, height: 18 }}
                 />

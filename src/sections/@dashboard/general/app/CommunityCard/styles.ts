@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 
 export const StyledRootBox = styled(Box)(({ theme }) => ({
   borderRadius: '10px',
-  marginRight: '16px',
   position: 'relative',
 }));
 

@@ -39,7 +39,7 @@ const CommunityCard: FC<CommunityCardProps> = ({ community }) => {
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row' }}>
             <SvgColor
-              src="assets/images/svgs/users.svg"
+              src="/assets/images/svgs/users.svg"
               sx={{
                 width: 10,
                 height: 10,
