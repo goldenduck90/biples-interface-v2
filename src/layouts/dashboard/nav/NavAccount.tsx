@@ -2,7 +2,6 @@ import { useState } from 'react';
 // next
 // import NextLink from 'next/link';
 // @mui
-import { styled, alpha } from '@mui/material/styles';
 import { Typography, IconButton, Divider } from '@mui/material';
 // auth
 import { useAuthContext } from '../../../auth/useAuthContext';
@@ -13,36 +12,8 @@ import { useAuthContext } from '../../../auth/useAuthContext';
 import Image from '../../../components/image';
 import SvgColor from '../../../components/svg-color';
 import ProfileModal from './ProfileModal';
+import { StyledRoot, StyledActionGroup, StyledAction, StyledProfileImage } from './styles';
 
-// ----------------------------------------------------------------------
-
-const StyledRoot = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: alpha(theme.palette.grey[500], 0.12),
-  transition: theme.transitions.create('opacity', {
-    duration: theme.transitions.duration.shorter,
-  }),
-}));
-
-const StyledActionGroup = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-}));
-
-const StyledAction = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-}));
-
-const StyledProfileImage = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '20px 30px',
-}));
 // ----------------------------------------------------------------------
 
 export default function NavAccount() {

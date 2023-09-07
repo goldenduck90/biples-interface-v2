@@ -9,7 +9,7 @@ import { useSettingsContext } from '../../components/settings';
 
 // ----------------------------------------------------------------------
 
-const SPACING = 8;
+const SPACING = 40;
 
 export default function Main({ children, sx, ...other }: BoxProps) {
   const { themeLayout } = useSettingsContext();
@@ -25,7 +25,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
         flexGrow: 1,
         py: `${HEADER.H_MOBILE + SPACING}px`,
         ...(isDesktop && {
-          px: 2,
+          // px: 2,
           py: `${HEADER.H_DASHBOARD_DESKTOP + SPACING}px`,
           width: `calc(100% - ${NAV.W_DASHBOARD}px)`,
           ...(isNavMini && {

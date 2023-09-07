@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, Stack, Drawer } from '@mui/material';
+import { Box, Drawer } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // config
@@ -43,6 +43,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
+        px: 4,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -50,24 +51,19 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         },
       }}
     >
-      <Stack
-        spacing={3}
+      <Box
         sx={{
-          pt: 3,
-          pb: 2,
-          px: 2.5,
-          flexShrink: 0,
+          mt: 5,
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Logo />
-        </Box>
-
-        <NavAccount />
-      </Stack>
-
+        <Logo sx={{ width: 160, height: 52 }} />
+      </Box>
       {/* <NavSectionVertical data={navConfig} /> */}
-
+      <Box sx={{ mt: 5 }}>
+        <NavAccount />
+      </Box>
       <Box sx={{ mt: 2.5 }}>
         <NFTGallery />
       </Box>
@@ -91,7 +87,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: NAV.W_DASHBOARD },
+        width: { lg: NAV.W_LEFT_NAV },
       }}
     >
       {/* <NavToggleButton /> */}
@@ -103,7 +99,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           PaperProps={{
             sx: {
               zIndex: 0,
-              width: NAV.W_DASHBOARD,
+              width: NAV.W_LEFT_NAV,
               bgcolor: 'transparent',
               // borderRightStyle: 'dashed',
               border: 'none',
@@ -121,7 +117,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           }}
           PaperProps={{
             sx: {
-              width: NAV.W_DASHBOARD,
+              width: NAV.W_LEFT_NAV,
             },
           }}
         >

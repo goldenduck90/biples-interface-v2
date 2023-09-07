@@ -2,19 +2,18 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, Stack, Drawer } from '@mui/material';
+import { Box, Drawer } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // config
 import { NAV } from '../../../config-global';
 // components
-import Logo from '../../../components/logo';
+// import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
-import { NavSectionVertical } from '../../../components/nav-section';
-//
-import navConfig from './config-navigation';
-import NavDocs from './NavDocs';
-import NavAccount from './NavAccount';
+// import { NavSectionVertical } from '../../../components/nav-section';
+import Wallet from './Wallet';
+import Sections from './Sections';
+import NewsFeed from './NewsFeed';
 import NavToggleButtonRight from './NavToggleButtonRight';
 
 // ----------------------------------------------------------------------
@@ -40,6 +39,7 @@ export default function NavVerticalRight({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
+        px: 4,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -47,27 +47,15 @@ export default function NavVerticalRight({ openNav, onCloseNav }: Props) {
         },
       }}
     >
-      <Stack
-        spacing={3}
-        sx={{
-          pt: 3,
-          pb: 2,
-          px: 2.5,
-          flexShrink: 0,
-        }}
-      >
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Logo />
-        </Box>
-
-        <NavAccount />
-      </Stack>
-
-      <NavSectionVertical data={navConfig} />
-
-      <Box sx={{ flexGrow: 1 }} />
-
-      <NavDocs />
+      <Box sx={{ mt: 5 }}>
+        <Wallet />
+      </Box>
+      <Box sx={{ mt: 5 }}>
+        <Sections />
+      </Box>
+      <Box sx={{ mt: 2.5, pb: 5 }}>
+        <NewsFeed />
+      </Box>
     </Scrollbar>
   );
 
@@ -76,7 +64,7 @@ export default function NavVerticalRight({ openNav, onCloseNav }: Props) {
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: NAV.W_DASHBOARD },
+        width: { lg: NAV.W_RIGHT_NAV },
       }}
     >
       <NavToggleButtonRight />
@@ -89,7 +77,7 @@ export default function NavVerticalRight({ openNav, onCloseNav }: Props) {
           PaperProps={{
             sx: {
               zIndex: 0,
-              width: NAV.W_DASHBOARD,
+              width: NAV.W_RIGHT_NAV,
               bgcolor: 'transparent',
               borderLeftStyle: 'dashed',
             },
@@ -107,7 +95,7 @@ export default function NavVerticalRight({ openNav, onCloseNav }: Props) {
           }}
           PaperProps={{
             sx: {
-              width: NAV.W_DASHBOARD,
+              width: NAV.W_RIGHT_NAV,
             },
           }}
         >

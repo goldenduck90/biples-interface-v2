@@ -41,7 +41,7 @@ const NFTGallery: FC = () => {
           }}
         >
           <SvgColor
-            src="assets/images/svgs/refresh.svg"
+            src="/assets/images/svgs/refresh.svg"
             sx={{
               width: 18,
               height: 18,

@@ -32,7 +32,7 @@ export default function NavToggleButtonRight({ sx, ...other }: IconButtonProps) 
         p: 0.5,
         top: 32,
         position: 'fixed',
-        right: NAV.W_DASHBOARD - 12,
+        right: NAV.W_RIGHT_NAV - 12,
         zIndex: theme.zIndex.appBar + 1,
         border: `dashed 1px ${theme.palette.divider}`,
         ...bgBlur({ opacity: 0.48, color: theme.palette.background.default }),
