@@ -6,7 +6,7 @@ import { Container, InputAdornment, OutlinedInput, Box } from '@mui/material';
 // auth
 // import { useAuthContext } from '../../auth/useAuthContext';
 // layouts
-import DashboardLayout from '../../layouts/dashboard';
+import { DashboardLayout } from '../../layouts/dashboard';
 // _mock_
 // import {
 //   _appFeatured,

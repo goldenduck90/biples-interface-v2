@@ -9,10 +9,10 @@ import AuthGuard from '../../auth/AuthGuard';
 import { useSettingsContext } from '../../components/settings';
 //
 import Main from './Main';
-import { Header } from './header';
+import { PrivateChatHeader } from './header';
 import NavMiniRight from './nav/NavMiniRight';
 import NavVertical from './nav/NavVertical';
-import NavVerticalRight from './nav/NavVerticalRight';
+import PrivateChatRightNav from './nav/PrivateChatRightNav';
 
 // ----------------------------------------------------------------------
 
@@ -48,14 +48,14 @@ export default function DashboardLayout({ children }: Props) {
 
   const renderNavVertical = <NavVertical openNav={open} onCloseNav={handleClose} />;
   const renderNavVerticalRight = (
-    <NavVerticalRight openNav={openRight} onCloseNav={handleCloseRight} />
+    <PrivateChatRightNav open={openRight} onClose={handleCloseRight} />
   );
 
   const renderContent = () => {
     if (isNavMini) {
       return (
         <>
-          <Header onOpenNav={handleOpen} onOpenNavRight={handleOpenRight} />
+          <PrivateChatHeader onOpenLeftNav={handleOpen} onOpenRightNav={handleOpenRight} />
 
           <Box
             sx={{
@@ -75,7 +75,7 @@ export default function DashboardLayout({ children }: Props) {
 
     return (
       <>
-        <Header onOpenNav={handleOpen} onOpenNavRight={handleOpenRight} />
+        <PrivateChatHeader onOpenLeftNav={handleOpen} onOpenRightNav={handleOpenRight} />
 
         <Box
           sx={{
