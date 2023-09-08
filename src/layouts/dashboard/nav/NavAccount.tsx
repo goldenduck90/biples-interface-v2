@@ -1,14 +1,15 @@
 import { useState } from 'react';
 // next
-// import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 // @mui
 import { Typography, IconButton, Divider } from '@mui/material';
 // auth
 import { useAuthContext } from '../../../auth/useAuthContext';
 // routes
-// import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_AUTH } from '../../../routes/paths';
 // components
 // import { CustomAvatar } from '../../../components/custom-avatar';
+import { useSnackbar } from '../../../components/snackbar';
 import Image from '../../../components/image';
 import SvgColor from '../../../components/svg-color';
 import ProfileModal from './ProfileModal';
@@ -17,7 +18,11 @@ import { StyledRoot, StyledActionGroup, StyledAction, StyledProfileImage } from 
 // ----------------------------------------------------------------------
 
 export default function NavAccount() {
-  const { user } = useAuthContext();
+  const { replace } = useRouter();
+
+  const { user, logout } = useAuthContext();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const [openProfile, setProfileOpen] = useState(false);
 
@@ -27,6 +32,17 @@ export default function NavAccount() {
   const handleProfileClose = () => {
     setProfileOpen(false);
   };
+
+  const handleLogout = async () => {
+    try {
+      logout();
+      replace(PATH_AUTH.login);
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to logout!', { variant: 'error' });
+    }
+  };
+
   return (
     // <Link component={NextLink} href={PATH_DASHBOARD.user.account} underline="none" color="inherit">
     <StyledRoot>
@@ -53,7 +69,7 @@ export default function NavAccount() {
               }}
             />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleLogout}>
             <SvgColor
               src="/assets/images/svgs/out.svg"
               sx={{

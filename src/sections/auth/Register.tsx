@@ -28,7 +28,7 @@ export default function Register() {
         <Link
           component={NextLink}
           href={PATH_AUTH.login}
-          variant="subtitle2"
+          variant="body2"
           underline="always"
           color="#FB15FF"
         >
@@ -36,17 +36,23 @@ export default function Register() {
         </Link>
       </Stack>
 
-      <Typography
-        component="div"
-        fontSize={8}
-        sx={{ color: 'text.secondary', mt: 2, textAlign: 'center' }}
-      >
+      <Typography component="div" fontSize={8} sx={{ mt: 1, textAlign: 'center' }}>
         {'*by clicking “sign up” button you are agree with our '}
-        <Link underline="always" component={NextLink} href={PATH_AUTH.register}>
+        <Link
+          underline="always"
+          component={NextLink}
+          href={PATH_AUTH.register}
+          sx={{ color: '#1563FF' }}
+        >
           privacy policy
         </Link>
         {' and '}
-        <Link underline="always" component={NextLink} href={PATH_AUTH.register}>
+        <Link
+          underline="always"
+          component={NextLink}
+          href={PATH_AUTH.register}
+          sx={{ color: '#1563FF' }}
+        >
           terms & condition.
         </Link>
         .

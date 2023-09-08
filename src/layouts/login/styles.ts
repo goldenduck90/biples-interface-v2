@@ -20,14 +20,14 @@ export const StyledContent = styled('div')(({ theme }) => ({
   borderWidth: 1,
   borderStyle: 'solid',
   borderRadius: 12,
-  borderColor: '#252525',
+  borderColor: theme.palette.grey[700],
   background: 'linear-gradient(20.08deg, rgba(0, 0, 0, 0.48) 6.24%, rgba(10, 0, 0, 0.07) 103.48%)',
   backdropFilter: 'blur(62.5px)',
   padding: theme.spacing(6, 2),
   marginTop: theme.spacing(4),
   [theme.breakpoints.up('md')]: {
-    flexShrink: 0,
     width: 520,
+    flexShrink: 0,
     padding: theme.spacing(8, 10),
   },
 }));

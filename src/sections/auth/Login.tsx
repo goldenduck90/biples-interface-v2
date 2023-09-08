@@ -19,7 +19,12 @@ export default function Login() {
         <Typography variant="h4">Sign In</Typography>
 
         <Stack direction="row" spacing={0.5}>
-          <Link component={NextLink} href={PATH_AUTH.register} variant="subtitle2">
+          <Link
+            component={NextLink}
+            href={PATH_AUTH.register}
+            variant="body2"
+            sx={{ color: '#4079E4' }}
+          >
             Create an account
           </Link>
           <Typography variant="body2">instead?</Typography>

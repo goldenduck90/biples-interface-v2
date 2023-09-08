@@ -1,6 +1,6 @@
 // @mui
 import { Divider, IconButton, Stack } from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 // auth
 import { useAuthContext } from '../../auth/useAuthContext';
 // components
@@ -8,10 +8,10 @@ import Image from '../../components/image';
 
 // ----------------------------------------------------------------------
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  borderRadius: '10px',
-  width: '54px',
-  height: '54px',
-  backgroundColor: alpha('#686868', 0.22),
+  borderRadius: theme.spacing(1),
+  width: 54,
+  height: 54,
+  backgroundColor: theme.palette.primary.main,
 }));
 
 export default function AuthWithSocial() {
@@ -43,22 +43,21 @@ export default function AuthWithSocial() {
     <div>
       <Divider
         sx={{
-          my: 2.5,
+          my: 3,
           typography: 'overline',
-          color: 'text.disabled',
           '&::before, ::after': {
-            borderTopStyle: 'dashed',
+            borderTopStyle: 'solid',
           },
         }}
       >
         OR
       </Divider>
 
-      <Stack direction="row" justifyContent="center" spacing={2}>
+      <Stack direction="row" justifyContent="center" spacing={{ xs: 1.4, md: 2.7 }}>
         <StyledIconButton onClick={handleGoogleLogin}>
           <Image
             src="/assets/images/auth/metamask.svg"
-            sx={{ width: 'auto', height: 30 }}
+            sx={{ width: 30, height: 30 }}
             style={{ cursor: 'pointer' }}
             alt="social-metamask"
           />
@@ -67,7 +66,7 @@ export default function AuthWithSocial() {
         <StyledIconButton onClick={handleGoogleLogin}>
           <Image
             src="/assets/images/auth/trustwallet.svg"
-            sx={{ width: 'auto', height: 30 }}
+            sx={{ width: 24, height: 24 }}
             style={{ cursor: 'pointer' }}
             alt="social-trustwallet"
           />
@@ -75,7 +74,7 @@ export default function AuthWithSocial() {
         <StyledIconButton onClick={handleGoogleLogin}>
           <Image
             src="/assets/images/auth/coinbase.svg"
-            sx={{ width: 'auto', height: 30 }}
+            sx={{ width: 24, height: 24 }}
             style={{ cursor: 'pointer' }}
             alt="social-coinbase"
           />
@@ -84,7 +83,7 @@ export default function AuthWithSocial() {
         <StyledIconButton color="inherit" onClick={handleGoogleLogin}>
           <Image
             src="/assets/images/auth/google.svg"
-            sx={{ width: 'auto', height: 30 }}
+            sx={{ width: 24, height: 24 }}
             style={{ cursor: 'pointer' }}
             alt="social-google"
           />
@@ -93,7 +92,7 @@ export default function AuthWithSocial() {
         <StyledIconButton onClick={handleTwitterLogin}>
           <Image
             src="/assets/images/auth/twitter.svg"
-            sx={{ width: 'auto', height: 30 }}
+            sx={{ width: 24, height: 'auto' }}
             style={{ cursor: 'pointer' }}
             alt="social-twitter"
           />

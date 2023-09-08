@@ -80,7 +80,7 @@ export default function AuthLoginForm() {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
+      <Stack spacing={5}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
         <RHFTextField
@@ -92,7 +92,7 @@ export default function AuthLoginForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/email.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -109,7 +109,7 @@ export default function AuthLoginForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/lock.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -124,8 +124,9 @@ export default function AuthLoginForm() {
         />
       </Stack>
 
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ my: 2 }}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ my: 3 }}>
         <FormControlLabel
+          sx={{ ml: -1 }}
           control={
             <Checkbox
               checked={checkedVisible}
@@ -135,7 +136,7 @@ export default function AuthLoginForm() {
                   disabledEffect
                   src="/assets/images/auth/unchecked.svg"
                   alt=""
-                  sx={{ width: 'auto', height: 14 }}
+                  sx={{ width: 14, height: 14 }}
                 />
               }
               checkedIcon={
@@ -143,7 +144,7 @@ export default function AuthLoginForm() {
                   disabledEffect
                   src="/assets/images/auth/checked.svg"
                   alt=""
-                  sx={{ width: 'auto', height: 14 }}
+                  sx={{ width: 14, height: 14 }}
                 />
               }
               inputProps={{ 'aria-label': 'controlled' }}
@@ -151,7 +152,12 @@ export default function AuthLoginForm() {
           }
           label="Remember me"
         />
-        <Link component={NextLink} href={PATH_AUTH.resetPassword} variant="subtitle2">
+        <Link
+          component={NextLink}
+          href={PATH_AUTH.resetPassword}
+          variant="caption"
+          sx={{ color: '#4079E4' }}
+        >
           Forgot password?
         </Link>
       </Stack>
@@ -166,6 +172,8 @@ export default function AuthLoginForm() {
         sx={{
           background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
           color: 'common.white',
+          height: 54,
+          fontSize: 16,
         }}
       >
         Sign in

@@ -74,7 +74,7 @@ export default function AuthRegisterForm() {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={2.5}>
+      <Stack spacing={4}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
         <RHFTextField
@@ -86,7 +86,7 @@ export default function AuthRegisterForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/user.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -102,7 +102,7 @@ export default function AuthRegisterForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/email.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -119,7 +119,7 @@ export default function AuthRegisterForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/lock.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -143,7 +143,7 @@ export default function AuthRegisterForm() {
               <InputAdornment position="start">
                 <SvgColor
                   src="/assets/images/auth/lock.svg"
-                  sx={{ width: 12, height: 12, color: '#5E6366' }}
+                  sx={{ width: 10, height: 10, color: '#5E6366' }}
                 />
               </InputAdornment>
             ),
@@ -167,6 +167,8 @@ export default function AuthRegisterForm() {
           sx={{
             background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
             color: 'common.white',
+            height: 54,
+            fontSize: 16,
           }}
         >
           Sign Up
