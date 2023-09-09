@@ -34,20 +34,20 @@ const GREY = {
 };
 
 const PRIMARY = {
-  // lighter: '#C8FACD',
-  // light: '#5BE584',
+  lighter: alpha('#F7F7F7', 0.22),
+  light: alpha('#D1D1D1', 0.22),
   main: alpha('#686868', 0.22),
-  // dark: '#007B55',
-  // darker: '#005249',
+  dark: alpha('#686868', 0.44),
+  darker: alpha('#686868', 0.88),
   contrastText: '#F0F0F0',
 };
 
 const SECONDARY = {
-  // lighter: '#D6E4FF',
-  // light: '#84A9FF',
+  lighter: alpha('#F2F2F2', 0.43),
+  light: alpha('#B2B2B2', 0.43),
   main: alpha('#000000', 0.43),
-  // dark: '#1939B7',
-  // darker: '#091A7A',
+  dark: alpha('#000000', 0.66),
+  darker: alpha('#000000', 0.88),
   contrastText: alpha('#000000', 0.43),
 };
 

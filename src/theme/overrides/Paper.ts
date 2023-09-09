@@ -11,6 +11,8 @@ export default function Paper(theme: Theme) {
       styleOverrides: {
         root: {
           backgroundImage: 'none',
+          background: theme.palette.secondary.main,
+          backdropFilter: 'blur(12.5px)',
         },
       },
     },

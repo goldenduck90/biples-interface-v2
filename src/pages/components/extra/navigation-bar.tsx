@@ -60,7 +60,7 @@ export default function DemoNavigationBarPage() {
             color="default"
             sx={{
               boxShadow: 0,
-              top: HEADER.H_DASHBOARD_DESKTOP_OFFSET,
+              top: HEADER.H_HOME_DESKTOP_OFFSET,
             }}
           >
             <Toolbar>
@@ -84,7 +84,7 @@ export default function DemoNavigationBarPage() {
             />
           </Stack>
 
-          <Stack spacing={2} sx={{ width: NAV.W_DASHBOARD_MINI }}>
+          <Stack spacing={2} sx={{ width: NAV.W_RIGHT_NAV_MINI }}>
             <Typography variant="h6"> Nav Mini </Typography>
 
             <NavSectionMini

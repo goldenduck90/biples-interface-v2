@@ -70,7 +70,7 @@ export default function Button(theme: Theme) {
         // CONTAINED
         ...(containedVariant && {
           '&:hover': {
-            boxShadow: theme.customShadows[color],
+            // boxShadow: theme.customShadows[color],
           },
         }),
         // SOFT

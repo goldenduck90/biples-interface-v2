@@ -10,5 +10,5 @@ export const defaultSettings: SettingsValueProps = {
   themeContrast: 'default',
   themeLayout: 'vertical',
   themeColorPresets: 'default',
-  themeStretch: false,
+  themeStretch: true,
 };
