@@ -41,13 +41,12 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   paddingLeft: '25px',
 }));
 
-export const StyledActionGroupBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
+export const StyledItem = styled('div')(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-  marginBottom: '1px',
-  padding: '0px 20px',
+  padding: theme.spacing(2, 0),
 }));
 
 export const StyledIconButton = styled(IconButton)(({ theme }) => ({

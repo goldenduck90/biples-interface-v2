@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { FC } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  background:
-    theme.palette.mode === 'dark'
-      ? 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)'
-      : theme.palette.primary.main,
-  height: 45,
-  minWidth: 160,
+  background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+  height: 30,
+  width: 130,
 }));
 
 interface DragDropFileProps {}
@@ -28,7 +25,7 @@ const DragDropFile: FC<DragDropFileProps> = () => {
 
   // handle drag events
   // eslint-disable-next-line func-names
-  const handleDrag = function (e: any) {
+  const handleDrag = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === 'dragenter' || e.type === 'dragover') {
@@ -39,7 +36,7 @@ const DragDropFile: FC<DragDropFileProps> = () => {
   };
 
   // triggers when file is dropped
-  const handleDrop = function (e: any) {
+  const handleDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -49,7 +46,7 @@ const DragDropFile: FC<DragDropFileProps> = () => {
   };
 
   // triggers when file is selected with click
-  const handleChange = function (e: any) {
+  const handleChange = (e: any) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       handleFile(e.target.files);
@@ -62,13 +59,16 @@ const DragDropFile: FC<DragDropFileProps> = () => {
   };
 
   return (
-    <Box
+    <Stack
+      justifyContent="center"
       sx={{
-        height: '9.9rem',
-        width: '100%',
-        maxWidth: '100%',
+        height: '124px',
         textAlign: 'center',
         position: 'relative',
+        borderWidth: '1px',
+        borderRadius: '10px',
+        borderStyle: 'dashed',
+        borderColor: 'primary.contrastText',
       }}
       // eslint-disable-next-line react/jsx-no-bind
       onDragEnter={handleDrag}
@@ -81,26 +81,12 @@ const DragDropFile: FC<DragDropFileProps> = () => {
         multiple
         onChange={handleChange}
       />
-      <label
-        className={dragActive ? 'drag-active' : ''}
-        style={{
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderWidth: '3px',
-          borderRadius: '1rem',
-          borderStyle: 'dashed',
-          borderColor: '#cbd5e1',
-        }}
-      >
-        <Box>
-          <p>Drag and drop your file here or</p>
-          <StyledButton variant="contained" onClick={onButtonClick}>
-            Select file
-          </StyledButton>
-        </Box>
-      </label>
+      <Stack spacing={2} alignItems="center">
+        <Typography variant="body2">Drag and drop your file here or</Typography>
+        <StyledButton variant="contained" onClick={onButtonClick}>
+          Select file
+        </StyledButton>
+      </Stack>
       {dragActive && (
         <Box
           sx={{
@@ -119,7 +105,7 @@ const DragDropFile: FC<DragDropFileProps> = () => {
           onDrop={() => handleDrop}
         />
       )}
-    </Box>
+    </Stack>
   );
 };
 export default DragDropFile;

@@ -130,27 +130,6 @@ export default function HomeHeader({ onOpenNavLeft, onOpenNavRight }: Props) {
           >
             Add Community
           </StyledAddCommunityButton>
-
-          {/* <Menu
-            id="community-menu"
-            anchorEl={anchorElCommunity}
-            open={openAddCommunityMenu}
-            onClose={handleAddCommunityClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-            PaperProps={{
-              style: {
-                backgroundImage: 'linear-gradient(rgba(50,50,50,0.2), rgba(50,50,50,0.2))',
-                backgroundColor: 'rgba(0,0,0,0.43)',
-                backdropFilter: 'blur(5px)',
-              },
-            }}
-          >
-            <MenuItem onClick={handleClickCommunityOpen}>Create a Community</MenuItem>
-            <MenuItem onClick={handleClickJoinCommunityOpen}>Join a Community</MenuItem>
-          </Menu> */}
-
           {COMMUNITIES.map((item: CommunityProps) => (
             <StyledCommunityButton
               key={item.name}
@@ -185,7 +164,13 @@ export default function HomeHeader({ onOpenNavLeft, onOpenNavRight }: Props) {
         disabledArrow
         open={openAddCommunityMenu}
         onClose={handleCloseAddCommunityMenu}
-        sx={{ width: 210, p: 1 }}
+        PaperProps={{
+          style: {
+            background: 'secondary.main',
+            backdropFilter: 'blur(5px)',
+            padding: '8px',
+          },
+        }}
       >
         <MenuItem onClick={handleOpenCreateCommunity}>
           <Stack direction="row" alignItems="center">

@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import Image from 'next/image';
+import { Typography, Stack } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
-import { StyledActionGroupBox } from './styles';
+import Image from '../../../../components/image';
+import { StyledItem } from './styles';
 import SubscriptionMenu from '../SubscriptionMenu';
 
 const CommunityItem = () => {
-  const theme = useTheme();
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const subscriptionOpen = Boolean(anchorEl);
   const handleSubscriptionOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,135 +16,89 @@ const CommunityItem = () => {
   };
 
   return (
-    <StyledActionGroupBox sx={{ height: 58 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+    <StyledItem>
+      <Stack direction="row" alignItems="center" spacing={1}>
         <Image
+          disabledEffect
           src="/assets/images/tron.svg"
           alt=""
-          width={30}
-          height={30}
-          style={{ borderRadius: 50 }}
+          sx={{ borderRadius: 50, width: 30, height: 30 }}
         />
-        <Box
+        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+          Tronwars
+        </Typography>
+        <SvgColor
+          src="/assets/images/svgs/verified.svg"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            pl: 1,
+            width: 12,
+            height: 12,
           }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: '1rem',
-                fontWeight: '600',
-                color: theme.palette.primary.contrastText,
-                margin: 0,
-                padding: 0,
-              }}
-            >
-              Tronwars
-            </Typography>
-            <SvgColor
-              src="/assets/images/svgs/verified.svg"
-              sx={{
-                width: '12px',
-                height: '12px',
-                pl: 2,
-                color: theme.palette.primary.contrastText,
-              }}
-            />
-          </Box>
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        />
+      </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        px={3}
+        py={1}
+        spacing={1}
+        sx={{ bgcolor: 'secondary.main', borderRadius: '10px' }}
+      >
         <SvgColor
           src="/assets/images/svgs/users.svg"
           sx={{
-            width: '12px',
-            height: '12px',
-            pl: 2,
-            color: theme.palette.primary.contrastText,
+            width: 12,
+            height: 12,
           }}
         />
-        <Typography
-          sx={{
-            fontSize: '0.8rem',
-            color: theme.palette.primary.contrastText,
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          140K members
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <SvgColor
+        <Typography variant="body2">140K members</Typography>
+      </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        px={3}
+        py={1}
+        spacing={1}
+        sx={{ bgcolor: 'secondary.main', borderRadius: '10px' }}
+      >
+        <Image
+          disabledEffect
           src="/assets/images/svgs/users-online.svg"
+          alt=""
           sx={{
-            width: '12px',
-            height: '12px',
-            pl: 2,
-            color: theme.palette.primary.contrastText,
+            width: 12,
+            height: 12,
           }}
         />
-        <Typography
-          sx={{
-            fontSize: '0.8rem',
-            color: theme.palette.primary.contrastText,
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          1K online
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', cursor: 'pointer' }}>
-        <Typography
-          sx={{
-            fontSize: '0.8rem',
-            color: theme.palette.primary.contrastText,
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          $
-        </Typography>
-      </Box>
-
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <Typography variant="body2">1K online</Typography>
+      </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ bgcolor: 'secondary.main', borderRadius: '10px', width: 32, height: 32 }}
+      >
+        <Typography variant="body2">$</Typography>
+      </Stack>
+      <Stack direction="row" alignItems="center" justifyContent="center" spacing={0.5}>
         <SvgColor
           src="/assets/images/svgs/join.svg"
           sx={{
-            width: '12px',
-            height: '12px',
-            pl: 2,
-            color: theme.palette.primary.contrastText,
+            width: 15,
+            height: 15,
           }}
         />
-        <Typography
-          sx={{
-            fontSize: '0.8rem',
-            color: theme.palette.primary.contrastText,
-            margin: 0,
-            padding: 0,
-          }}
-          onClick={handleSubscriptionOpen}
-        >
+        <Typography variant="body1" onClick={handleSubscriptionOpen}>
           Join
         </Typography>
-      </Box>
+      </Stack>
       <SubscriptionMenu
         anchorEl={anchorEl}
         subscriptionOpen={subscriptionOpen}
         handleClose={handleSubscriptionClose}
       />
-    </StyledActionGroupBox>
+    </StyledItem>
   );
 };
 
