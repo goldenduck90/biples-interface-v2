@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, Drawer } from '@mui/material';
+import { Stack, Box, Drawer } from '@mui/material';
 // hooks
 import useResponsive from '../../../../hooks/useResponsive';
 // config
@@ -38,6 +38,7 @@ export default function NavHome({ openNav, onCloseNav }: Props) {
         height: 1,
         pr: 4,
         pl: 1,
+        pt: 6,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -45,15 +46,14 @@ export default function NavHome({ openNav, onCloseNav }: Props) {
         },
       }}
     >
-      <Box sx={{ mt: 5 }}>
+      <Stack mb={4} alignItems="center">
         <Wallet />
-      </Box>
-      <Box sx={{ mt: 5 }}>
+      </Stack>
+
+      <Stack spacing={2.5} pb={6}>
         <Sections />
-      </Box>
-      <Box sx={{ mt: 2.5, pb: 5 }}>
         <NewsFeed />
-      </Box>
+      </Stack>
     </Scrollbar>
   );
 

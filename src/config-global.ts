@@ -45,7 +45,7 @@ export const NAV = {
   W_BASE: 260,
   W_DASHBOARD: 280,
   W_LEFT_NAV: 328,
-  W_RIGHT_NAV: 295,
+  W_RIGHT_NAV: 285,
   W_RIGHT_NAV_MINI: 88,
   //
   H_DASHBOARD_ITEM: 48,

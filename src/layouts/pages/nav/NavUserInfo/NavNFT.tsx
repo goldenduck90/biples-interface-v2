@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
 import Image from '../../../../components/image';
-import { StyledRoot } from './styles';
+import { StyledRoot } from '../styles';
 
 export default function NavNFT() {
   const [filter, setFilter] = useState('mine');

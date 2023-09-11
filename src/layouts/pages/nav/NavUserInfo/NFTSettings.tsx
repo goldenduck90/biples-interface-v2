@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import { FormControlLabel, Checkbox, Divider } from '@mui/material';
-import { StyledRoot } from './styles';
+import { StyledRoot } from '../styles';
 
 export default function NFTSettings() {
   const [checkedVisible, setCheckedVisible] = useState<boolean>(true);

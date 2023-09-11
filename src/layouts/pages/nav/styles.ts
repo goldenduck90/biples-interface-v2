@@ -2,34 +2,9 @@ import { styled } from '@mui/material/styles';
 import { IconButton, Button } from '@mui/material';
 
 export const StyledRoot = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1, 2),
+  padding: theme.spacing(0, 2),
   borderRadius: Number(theme.shape.borderRadius) * 2,
   backgroundColor: theme.palette.primary.main,
-}));
-
-export const StyledActionGroup = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-}));
-
-export const StyledAction = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-}));
-
-export const StyledProfileImage = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '20px 30px',
-}));
-
-export const StyledRootBox = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  borderRadius: '15px',
-  padding: '0px 16px',
 }));
 
 export const StyledActionGroupBox = styled('div')(({ theme }) => ({

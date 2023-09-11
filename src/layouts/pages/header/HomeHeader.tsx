@@ -118,7 +118,7 @@ export default function HomeHeader({ onOpenNavLeft, onOpenNavRight }: Props) {
           },
         }}
       >
-        <Stack direction="row" justifyContent="center" alignItems="center" spacing={2.2}>
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={2.4}>
           <StyledAddCommunityButton
             variant="contained"
             startIcon={

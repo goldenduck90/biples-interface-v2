@@ -1,6 +1,15 @@
-import { useTheme } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
+import { Button } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
-import { StyledButton } from './styles';
+
+export const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: Number(theme.shape.borderRadius) * 2,
+  padding: theme.spacing(2, 3),
+  height: 45,
+  width: '100%',
+  justifyContent: 'start',
+  fontSize: '15px',
+}));
 
 const Sections = () => {
   const theme = useTheme();

@@ -12,7 +12,7 @@ import { useSnackbar } from '../../../../components/snackbar';
 import Image from '../../../../components/image';
 import SvgColor from '../../../../components/svg-color';
 import ProfileModal from './ProfileModal';
-import { StyledRoot } from './styles';
+import { StyledRoot } from '../styles';
 
 // ----------------------------------------------------------------------
 

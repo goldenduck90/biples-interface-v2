@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
 import { Switch, Typography, Stack } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
-import { StyledRoot } from './styles';
+import { StyledRoot } from '../styles';
 
 const StyledSwitch = styled(Switch)(({ theme }) => ({
   width: 70,
