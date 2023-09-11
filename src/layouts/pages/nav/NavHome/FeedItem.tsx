@@ -28,7 +28,7 @@ const FeedItem = () => {
         <Stack direction="row" spacing={1}>
           <Stack pl={1}>
             <Stack direction="row" alignItems="center" spacing={0.5}>
-              <Typography variant="subtitle1" color="white">
+              <Typography variant="body1" color="white">
                 Tronwars
               </Typography>
               <SvgColor
@@ -90,7 +90,7 @@ const FeedItem = () => {
                 mr: 1,
               }}
             />
-            <Typography variant="subtitle1">Pin</Typography>
+            <Typography variant="body1">Pin</Typography>
           </Stack>
         </MenuItem>
         <MenuItem
@@ -107,7 +107,7 @@ const FeedItem = () => {
                 mr: 1,
               }}
             />
-            <Typography variant="subtitle1">Mark as read</Typography>
+            <Typography variant="body1">Mark as read</Typography>
           </Stack>
         </MenuItem>
         <MenuItem
@@ -124,7 +124,7 @@ const FeedItem = () => {
                 mr: 1,
               }}
             />
-            <Typography variant="subtitle1">Hide</Typography>
+            <Typography variant="body1">Hide</Typography>
           </Stack>
         </MenuItem>
         <MenuItem
@@ -143,7 +143,7 @@ const FeedItem = () => {
                 mr: 1,
               }}
             />
-            <Typography variant="subtitle1" color="#F44336">
+            <Typography variant="body1" color="#F44336">
               Leave
             </Typography>
           </Stack>

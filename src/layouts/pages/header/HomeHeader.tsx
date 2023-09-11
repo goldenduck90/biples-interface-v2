@@ -11,6 +11,7 @@ import {
   MenuItem,
   Stack,
   Divider,
+  Typography,
 } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
@@ -20,6 +21,7 @@ import { HEADER, NAV } from '../../../config-global';
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
 import SvgColor from '../../../components/svg-color';
+import Image from '../../../components/image';
 import MenuPopover from '../../../components/menu-popover';
 import { CustomAvatar } from '../../../components/custom-avatar';
 //
@@ -180,13 +182,48 @@ export default function HomeHeader({ onOpenNavLeft, onOpenNavRight }: Props) {
         </Stack>
       </Scrollbar>
       <MenuPopover
+        disabledArrow
         open={openAddCommunityMenu}
         onClose={handleCloseAddCommunityMenu}
-        sx={{ width: 200, p: 0 }}
+        sx={{ width: 210, p: 1 }}
       >
-        <MenuItem onClick={handleOpenCreateCommunity}>Create a Community</MenuItem>
-        <Divider sx={{ borderStyle: 'dashed' }} />
-        <MenuItem onClick={handleOpenJoinCommunity}>Join a Community</MenuItem>
+        <MenuItem onClick={handleOpenCreateCommunity}>
+          <Stack direction="row" alignItems="center">
+            <SvgColor
+              src="/assets/images/svgs/plus.svg"
+              sx={{
+                width: 10,
+                height: 10,
+                mr: 1,
+              }}
+            />
+            <Typography variant="body1">Create a Community</Typography>
+          </Stack>
+        </MenuItem>
+        <Divider sx={{ color: 'primary.main' }} />
+        <MenuItem onClick={handleOpenJoinCommunity}>
+          <Stack direction="row" alignItems="center">
+            <Image
+              src="/assets/images/svgs/enter.svg"
+              sx={{
+                width: 10,
+                height: 10,
+                mr: 1,
+              }}
+            />
+            <Typography
+              variant="body1"
+              sx={{
+                backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              Join a Community
+            </Typography>
+          </Stack>
+        </MenuItem>
       </MenuPopover>
       <CreateCommunityModal open={openCreateCommunity} handleClose={handleCloseCreateCommunity} />
       <JoinCommunityModal open={openJoinCommunity} handleClose={handleCloseJoinCommunity} />
