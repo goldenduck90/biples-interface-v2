@@ -6,7 +6,7 @@ import { FEATURED_COMMUNITIES } from '../../constants/communities';
 const FeaturedCommunity = () => (
   <Stack mt={4}>
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <Typography variant="h5" color="white">
+      <Typography variant="subtitle1" color="white">
         Featured Community
       </Typography>
       <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }}>

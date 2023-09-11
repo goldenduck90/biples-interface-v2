@@ -6,7 +6,7 @@ import SvgColor from '../../components/svg-color';
 const CuratedCommunity = () => (
   <Stack mt={4}>
     <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <Typography variant="h5" color="white">
+      <Typography variant="subtitle1" color="white">
         Featured Community
       </Typography>
       <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }}>

@@ -37,9 +37,9 @@ const NewsFeed = () => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Scrollbar
           sx={{
-            height: 485,
+            height: 483,
             '& .simplebar-content': {
-              height: 485,
+              height: 483,
               display: 'flex',
               flexDirection: 'column',
             },

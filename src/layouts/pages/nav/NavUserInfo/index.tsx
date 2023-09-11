@@ -53,7 +53,7 @@ export default function NavUserInfo({ openNav, onCloseNav }: Props) {
         <Logo sx={{ width: 'auto', height: 58 }} />
       </Stack>
 
-      <Stack spacing={2.8} pb={6}>
+      <Stack spacing={3} pb={6}>
         <NavAccount />
         <NavNFT />
         <NFTSettings />

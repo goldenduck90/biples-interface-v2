@@ -7,14 +7,14 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../utils/createEmotionCache';
 // theme
 import palette from '../theme/palette';
-import { primaryFont } from '../theme/typography';
+import { TTFirsNeue } from '../theme/typography';
 
 // ----------------------------------------------------------------------
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className={primaryFont.className}>
+      <Html lang="en" className={TTFirsNeue.className}>
         <Head>
           <meta charSet="utf-8" />
           <link rel="manifest" href="/manifest.json" />
