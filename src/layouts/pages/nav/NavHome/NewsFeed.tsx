@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack, Typography, List, Divider } from '@mui/material';
+import { Stack, Typography, List, Divider, Box } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import { StyledRoot } from '../styles';
 import FeedItem from './FeedItem';
@@ -37,9 +37,9 @@ const NewsFeed = () => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Scrollbar
           sx={{
-            height: 480,
+            height: 485,
             '& .simplebar-content': {
-              height: 480,
+              height: 485,
               display: 'flex',
               flexDirection: 'column',
             },
@@ -47,10 +47,10 @@ const NewsFeed = () => {
         >
           <List sx={{ width: '100%' }}>
             {Array.from(Array(10)).map((_, index) => (
-              <>
+              <Box key={index}>
                 <Divider sx={{ color: 'primary.main' }} />
                 <FeedItem />
-              </>
+              </Box>
             ))}
           </List>
         </Scrollbar>

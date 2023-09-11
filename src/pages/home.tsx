@@ -2,7 +2,7 @@
 import Head from 'next/head';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Container, InputAdornment, OutlinedInput, Box } from '@mui/material';
+import { Container, InputAdornment, OutlinedInput, Stack } from '@mui/material';
 // layouts
 import { HomeLayout } from '../layouts/pages';
 // components
@@ -14,7 +14,6 @@ import SvgColor from '../components/svg-color';
 const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   padding: '0px 16px',
-  textAlign: 'center',
   borderRadius: '10px',
 }));
 
@@ -34,14 +33,12 @@ export default function HomePage() {
       </Head>
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Box
+        <Stack
+          px={4}
+          py={3}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            px: 4,
-            py: 3,
             bgcolor: 'primary.main',
-            borderRadius: '15px',
+            borderRadius: '16px',
           }}
         >
           <StyledOutlinedInput
@@ -54,10 +51,11 @@ export default function HomePage() {
               </InputAdornment>
             }
           />
+
           <SearchResult />
           <FeaturedCommunity />
           <CuratedCommunity />
-        </Box>
+        </Stack>
       </Container>
     </>
   );

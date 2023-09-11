@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Typography, Stack } from '@mui/material';
 import SvgColor from '../../../components/svg-color';
 import Image from '../../../components/image';
-import { StyledRootBox, StyledInfoBox } from './styles';
+import { StyledRoot, StyledInfo } from './styles';
 
 interface CommunityCardProps {
   community: {
@@ -14,46 +13,36 @@ interface CommunityCardProps {
     image: string;
   };
 }
-const CommunityCard: FC<CommunityCardProps> = ({ community }) => {
-  const theme = useTheme();
-  return (
-    <StyledRootBox>
-      <Image
-        disabledEffect
-        src={community.image}
-        alt=""
-        style={{ borderRadius: '10px', height: 185, width: 380 }}
-      />
-      <StyledInfoBox>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography sx={{ fontSize: '16px', fontWeight: '600', color: '#fff' }}>
-            {community.name}
+const CommunityCard: FC<CommunityCardProps> = ({ community }) => (
+  <StyledRoot>
+    <Image
+      disabledEffect
+      src={community.image}
+      alt=""
+      style={{ borderRadius: '10px', height: 195, width: 380 }}
+    />
+    <StyledInfo>
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Typography sx={{ fontSize: '16px', fontWeight: '600', color: '#fff' }}>
+          {community.name}
+        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+          <SvgColor
+            src="/assets/images/svgs/users.svg"
+            sx={{
+              width: 10,
+              height: 10,
+              color: '#fff',
+            }}
+          />
+          <Typography sx={{ fontSize: '9px', color: '#fff', ml: 1 }}>
+            {community.members} members
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <SvgColor
-              src="/assets/images/svgs/users.svg"
-              sx={{
-                width: 10,
-                height: 10,
-                color: '#fff',
-              }}
-            />
-            <Typography sx={{ fontSize: '9px', color: '#fff', ml: 1 }}>
-              {community.members} members
-            </Typography>
-          </Box>
         </Box>
-        <Typography sx={{ fontSize: '8px', color: '#fff' }}>{community.description}</Typography>
-      </StyledInfoBox>
-    </StyledRootBox>
-  );
-};
+      </Stack>
+      <Typography sx={{ fontSize: '8px', color: '#fff' }}>{community.description}</Typography>
+    </StyledInfo>
+  </StyledRoot>
+);
 
 export default CommunityCard;

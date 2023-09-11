@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const StyledRootBox = styled(Box)(({ theme }) => ({
+const StyledRootBox = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',

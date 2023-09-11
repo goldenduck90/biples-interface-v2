@@ -1,14 +1,15 @@
-import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const StyledRootBox = styled(Box)(({ theme }) => ({
+export const StyledRoot = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   position: 'relative',
 }));
 
-export const StyledInfoBox = styled(Box)(({ theme }) => ({
+export const StyledInfo = styled('div')(({ theme }) => ({
   position: 'absolute',
-  bottom: 6,
+  width: '100%',
+  height: '72px',
+  bottom: 0,
   zIndex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -18,12 +19,12 @@ export const StyledInfoBox = styled(Box)(({ theme }) => ({
   padding: '10px 20px',
 }));
 
-export const StyledActionBox = styled(Box)(({ theme }) => ({
+export const StyledAction = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
 }));
 
-export const StyledProfileImageBox = styled(Box)(({ theme }) => ({
+export const StyledProfileImage = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
