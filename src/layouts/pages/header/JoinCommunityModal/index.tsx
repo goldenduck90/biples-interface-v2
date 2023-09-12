@@ -7,7 +7,6 @@ import {
   IconButton,
   InputAdornment,
   OutlinedInput,
-  Typography,
   Divider,
 } from '@mui/material';
 import CommunityItem from './CommunityItem';
@@ -60,8 +59,8 @@ const JoinCommunityModal: FC<JoinCommunityModalProps> = ({ open, handleClose }) 
       },
     }}
   >
-    <DialogTitle sx={{ textAlign: 'center' }} id="join-community-dialog-title">
-      <Typography variant="h4">Join a Community</Typography>
+    <DialogTitle typography="h4" sx={{ textAlign: 'center' }} id="join-community-dialog-title">
+      Join a Community
       <Divider sx={{ color: 'primary.main', mt: 3 }} />
     </DialogTitle>
     <IconButton

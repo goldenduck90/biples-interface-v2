@@ -73,19 +73,19 @@ const typography = {
     ...responsiveFontSizes({ sm: 40, md: 44, lg: 48 }),
   },
   h4: {
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: 1.5,
     fontSize: pxToRem(32),
-    ...responsiveFontSizes({ sm: 32, md: 36, lg: 36 }),
+    ...responsiveFontSizes({ sm: 32, md: 35, lg: 35 }),
   },
   h5: {
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: 1.5,
     fontSize: pxToRem(28),
     ...responsiveFontSizes({ sm: 29, md: 30, lg: 30 }),
   },
   h6: {
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: 1.5,
     fontSize: pxToRem(24),
     ...responsiveFontSizes({ sm: 24, md: 24, lg: 24 }),
@@ -96,13 +96,13 @@ const typography = {
     fontSize: pxToRem(20),
   },
   subtitle2: {
-    fontWeight: 600,
-    lineHeight: 1.375,
-    fontSize: pxToRem(18),
+    fontWeight: 400,
+    lineHeight: 1.5,
+    fontSize: pxToRem(20),
   },
   body1: {
     lineHeight: 1.25,
-    fontSize: pxToRem(16),
+    fontSize: pxToRem(15),
   },
   body2: {
     lineHeight: 1.25,

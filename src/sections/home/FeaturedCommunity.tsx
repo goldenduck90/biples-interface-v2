@@ -1,4 +1,4 @@
-import { Typography, Stack } from '@mui/material';
+import { Typography, Stack, Unstable_Grid2 as Grid } from '@mui/material';
 import SvgColor from '../../components/svg-color';
 import CommunityCard from './CommunityCard';
 import { FEATURED_COMMUNITIES } from '../../constants/communities';
@@ -16,11 +16,20 @@ const FeaturedCommunity = () => (
         <SvgColor src="/assets/images/svgs/right_arrow.svg" sx={{ width: 8, height: 8 }} />
       </Stack>
     </Stack>
-    <Stack direction="row" justifyContent="space-between" mt={3}>
+    <Grid
+      container
+      direction={{ xs: 'column', xl: 'row' }}
+      justifyContent="center"
+      alignItems="center"
+      mt={3}
+      spacing={2}
+    >
       {FEATURED_COMMUNITIES.map((community) => (
-        <CommunityCard key={community.id} community={community} />
+        <Grid xl={4} key={community.id}>
+          <CommunityCard community={community} />
+        </Grid>
       ))}
-    </Stack>
+    </Grid>
   </Stack>
 );
 

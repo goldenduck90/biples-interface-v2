@@ -33,12 +33,7 @@ export const StyledProfileImageBox = styled(Box)(({ theme }) => ({
 }));
 
 export const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: '15px',
-  height: 45,
-  width: '100%',
-  justifyContent: 'start',
-  fontSize: '1rem',
-  paddingLeft: '25px',
+  color: theme.palette.primary.contrastText,
 }));
 
 export const StyledItem = styled('div')(({ theme }) => ({

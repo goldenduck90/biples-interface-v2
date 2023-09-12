@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Typography, Stack } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
 import Image from '../../../../components/image';
-import { StyledItem } from './styles';
-import SubscriptionMenu from '../SubscriptionMenu';
+import { StyledItem, StyledButton } from './styles';
+import SubscriptionMenu from './SubscriptionMenu';
 
 const CommunityItem = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -81,18 +81,21 @@ const CommunityItem = () => {
       >
         <Typography variant="body2">$</Typography>
       </Stack>
-      <Stack direction="row" alignItems="center" justifyContent="center" spacing={0.5}>
-        <SvgColor
-          src="/assets/images/svgs/join.svg"
-          sx={{
-            width: 15,
-            height: 15,
-          }}
-        />
-        <Typography variant="body1" onClick={handleSubscriptionOpen}>
-          Join
-        </Typography>
-      </Stack>
+      <StyledButton
+        variant="text"
+        startIcon={
+          <SvgColor
+            src="/assets/images/svgs/join.svg"
+            sx={{
+              width: 15,
+              height: 15,
+            }}
+          />
+        }
+        onClick={handleSubscriptionOpen}
+      >
+        Join
+      </StyledButton>
       <SubscriptionMenu
         anchorEl={anchorEl}
         subscriptionOpen={subscriptionOpen}
