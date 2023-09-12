@@ -9,10 +9,8 @@ const CuratedCommunity = () => (
       <Typography variant="subtitle1" color="white">
         Featured Community
       </Typography>
-      <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }}>
-        <Typography fontSize="20px" mr={1}>
-          See all
-        </Typography>
+      <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }} spacing={1}>
+        <Typography variant="subtitle2">See all</Typography>
         <SvgColor
           src="/assets/images/svgs/right_arrow.svg"
           sx={{
@@ -27,7 +25,7 @@ const CuratedCommunity = () => (
       direction={{ xs: 'column', xl: 'row' }}
       justifyContent="center"
       alignItems="center"
-      mt={3}
+      mt={2}
       spacing={2}
     >
       {FEATURED_COMMUNITIES.map((community) => (

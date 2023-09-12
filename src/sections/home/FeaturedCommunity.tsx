@@ -9,8 +9,8 @@ const FeaturedCommunity = () => (
       <Typography variant="subtitle1" color="white">
         Featured Community
       </Typography>
-      <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }}>
-        <Typography fontSize="20px" mr={1}>
+      <Stack direction="row" alignItems="center" sx={{ cursor: 'pointer' }} spacing={1}>
+        <Typography variant="subtitle2">
           See all
         </Typography>
         <SvgColor src="/assets/images/svgs/right_arrow.svg" sx={{ width: 8, height: 8 }} />
@@ -21,7 +21,7 @@ const FeaturedCommunity = () => (
       direction={{ xs: 'column', xl: 'row' }}
       justifyContent="center"
       alignItems="center"
-      mt={3}
+      mt={2}
       spacing={2}
     >
       {FEATURED_COMMUNITIES.map((community) => (
