@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
 import Image from '../../../../components/image';
+import CollectiblesModal from './CollectiblesModal';
 import { StyledRoot } from '../styles';
 
 export default function NavNFT() {
@@ -125,6 +126,7 @@ export default function NavNFT() {
           </Stack>
         </Grid>
       </Grid>
+      <CollectiblesModal open={openCollectionModal} handleClose={handleCloseCollectionModal} />
     </StyledRoot>
   );
 }
