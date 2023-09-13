@@ -96,9 +96,9 @@ const typography = {
     fontSize: pxToRem(20),
   },
   subtitle2: {
-    fontWeight: 400,
+    fontWeight: 600,
     lineHeight: 1.5,
-    fontSize: pxToRem(20),
+    fontSize: pxToRem(18),
   },
   body1: {
     lineHeight: 1.25,

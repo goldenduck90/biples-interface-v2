@@ -15,6 +15,7 @@ import {
   InputAdornment,
   FormControlLabel,
   Checkbox,
+  Typography,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // routes
@@ -82,46 +83,56 @@ export default function AuthLoginForm() {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={5}>
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
+        <Stack spacing={1}>
+          <Typography variant="body1">Email</Typography>
 
-        <RHFTextField
-          name="email"
-          label="Email address"
-          autoComplete="email"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SvgColor
-                  src="/assets/images/auth/email.svg"
-                  sx={{ width: 10, height: 10, color: '#5E6366' }}
-                />
-              </InputAdornment>
-            ),
-          }}
-        />
+          <RHFTextField
+            name="email"
+            placeholder="Email"
+            label=""
+            InputLabelProps={{ shrink: false }}
+            autoComplete="email"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SvgColor
+                    src="/assets/images/auth/email.svg"
+                    sx={{ width: 10, height: 10, color: '#5E6366' }}
+                  />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography variant="body1">Password</Typography>
 
-        <RHFTextField
-          name="password"
-          label="Password"
-          autoComplete="current-password"
-          type={showPassword ? 'text' : 'password'}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SvgColor
-                  src="/assets/images/auth/lock.svg"
-                  sx={{ width: 10, height: 10, color: '#5E6366' }}
-                />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+          <RHFTextField
+            name="password"
+            placeholder="Password"
+            label=""
+            InputLabelProps={{ shrink: false }}
+            autoComplete="current-password"
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SvgColor
+                    src="/assets/images/auth/lock.svg"
+                    sx={{ width: 10, height: 10, color: '#5E6366' }}
+                  />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Stack>
       </Stack>
 
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ my: 3 }}>
