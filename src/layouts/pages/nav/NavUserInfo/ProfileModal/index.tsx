@@ -238,7 +238,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ open, handleClose }) => {
                 pt={1}
                 sx={{
                   backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
-                  backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   color: 'transparent',
                 }}

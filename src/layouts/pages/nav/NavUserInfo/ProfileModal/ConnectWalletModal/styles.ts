@@ -8,7 +8,18 @@ export const WalletBox = styled(Box)(({ theme }) => ({
   borderRadius: '10px',
   padding: '0.5rem',
   background: '#68686838',
-  margin: '1rem 0'
+  margin: '1rem 0',
+}));
+
+export const StyledWalletButton = styled(Button)(({ theme }) => ({
+  borderRadius: '15px',
+  background: theme.palette.primary.main,
+  color: theme.palette.common.white,
+  justifyContent: 'space-between',
+  padding: theme.spacing(1, 0.5, 1, 3),
+  width: '276px',
+  height: '45px',
+  textAlign: 'start',
 }));
 
 export const StyledInfoBox = styled(Box)(({ theme }) => ({
@@ -18,8 +29,7 @@ export const StyledInfoBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '10px',
-  background:
-    'linear-gradient(90.6deg, rgba(21, 21, 21, 0.42) 0.3%, rgba(185, 35, 255, 0) 105.8%)',
+  background: 'linear-gradient(90.6deg, rgba(21, 21, 21, 0.42) 0.3%, rgba(185, 35, 255, 0) 105.8%)',
   backdropFilter: 'blur(2.5px)',
   padding: '10px 20px',
 }));

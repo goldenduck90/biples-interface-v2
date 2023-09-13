@@ -3,6 +3,7 @@ import { ChangeEvent, FC, useState } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
 import {
   Box,
+  Stack,
   Typography,
   Tabs,
   Tab,
@@ -13,20 +14,60 @@ import {
   Checkbox,
   IconButton,
 } from '@mui/material';
-// import SwipeableViews from 'react-swipeable-views';
+import SwipeableViews from 'react-swipeable-views';
 import Iconify from '../../../../../../components/iconify';
 import SvgColor from '../../../../../../components/svg-color';
 import Image from '../../../../../../components/image';
-import { WalletBox } from './styles';
+import { StyledWalletButton } from './styles';
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogTitle-root': {
+    padding: theme.spacing(10, 0, 0, 0),
   },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(6, 8),
   },
 }));
+
+interface StyledTabsProps {
+  children?: React.ReactNode;
+  value: number;
+  onChange: (event: React.SyntheticEvent, newValue: number) => void;
+}
+
+const StyledTabs = styled((props: StyledTabsProps) => (
+  <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
+))({
+  '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  '& .MuiTabs-indicatorSpan': {
+    width: '100%',
+    background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+  },
+});
+
+interface StyledTabProps {
+  label: string;
+}
+
+const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightBold,
+    fontSize: theme.typography.pxToRem(18),
+    '&.Mui-selected': {
+      backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+      WebkitBackgroundClip: 'text',
+      color: 'transparent',
+    },
+    '&:not(.Mui-selected)': {
+      color: 'white',
+    },
+  })
+);
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,8 +83,8 @@ function TabPanel(props: TabPanelProps) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`wallet-tabpanel-${index}`}
+      aria-labelledby={`wallet-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -57,45 +98,16 @@ function TabPanel(props: TabPanelProps) {
 
 function a11yProps(index: number) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    id: `wallet-tab-${index}`,
+    'aria-controls': `wallet-tabpanel-${index}`,
   };
-}
-
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
-}
-
-function BootstrapDialogTitle(props: DialogTitleProps) {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <Iconify icon="eva:close-fill" />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
 }
 
 interface ConnectWalletModalProps {
   open: boolean;
   handleClose: () => void;
 }
+
 const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -104,9 +116,9 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
     setValue(newValue);
   };
 
-  // const handleChangeIndex = (index: number) => {
-  //   setValue(index);
-  // };
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  };
 
   const [checkedRemind, setCheckedRemind] = useState<boolean>(true);
 
@@ -115,154 +127,155 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
   };
   return (
     <div>
-      <BootstrapDialog
+      <StyledDialog
         onClose={handleClose}
         aria-labelledby="connect-wallet-dialog-title"
         open={open}
         maxWidth="xl"
         PaperProps={{
           style: {
-            backgroundImage: 'linear-gradient(rgba(21,21,21,0.85), rgba(21,21,21,0.85))',
-            backgroundColor: 'rgba(0,0,0,0)',
-            backdropFilter: 'blur(7.5px)',
+            background: 'rgba(21, 21, 21, 0.85)',
+            backdropFilter: 'blur(14px)',
           },
         }}
       >
-        <BootstrapDialogTitle id="connect-wallet-dialog-title" onClose={handleClose} />
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: 'primary.contrastText',
+          }}
+        >
+          <Iconify icon="eva:close-fill" />
+        </IconButton>
+        <DialogTitle typography="h4" sx={{ textAlign: 'center' }} id="connect-wallet-dialog-title">
+          Connect Wallet
+        </DialogTitle>
         <DialogContent>
-          <Box
-            sx={{
-              width: '400px',
-              margin: '3rem 5rem',
-              textAlign: 'center',
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: '35px',
-                fontWeight: '600',
-                marginBottom: '2rem',
-              }}
-            >
-              Connect your wallet
-            </Typography>
-
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              // textColor="secondary"
-              // indicatorColor="secondary"
-              variant="fullWidth"
-              // TabIndicatorProps={{
-              //   style: {
-              //     backgroundColor: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)'
-              //   }
-              // }}
-            >
-              <Tab label="Ethereum" {...a11yProps(0)} />
-              <Tab label="Solana" {...a11yProps(1)} />
-              <Tab label="Polygon" {...a11yProps(2)} />
-            </Tabs>
-            {/* <SwipeableViews
+          <Stack alignItems="center" justifyContent="center">
+            <StyledTabs value={value} onChange={handleChange}>
+              <StyledTab label="Ethereum" {...a11yProps(0)} />
+              <StyledTab label="Solana" {...a11yProps(1)} />
+              <StyledTab label="Polygon" {...a11yProps(2)} />
+            </StyledTabs>
+            <SwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
               index={value}
               onChangeIndex={handleChangeIndex}
-            > */}
-            <TabPanel value={value} index={0} dir={theme.direction}>
-              <WalletBox>
-                <Box
-                  sx={{
-                    display: 'flex',
-                  }}
-                >
-                  <Image
-                    disabledEffect
-                    src="/assets/images/svgs/metamask.svg"
-                    alt="Metamask"
-                    sx={{ width: 30, height: 30 }}
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: '1.25rem',
-                      marginLeft: '0.5rem',
-                    }}
+            >
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <Stack spacing={3}>
+                  <StyledWalletButton
+                    startIcon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/svgs/metamask.svg"
+                        alt="Metamask"
+                        sx={{ width: 30, height: 30 }}
+                      />
+                    }
+                    endIcon={
+                      <IconButton
+                        sx={{
+                          borderRadius: '15px',
+                          height: 45,
+                          width: 45,
+                        }}
+                      >
+                        <Image
+                          disabledEffect
+                          src="/assets/images/svgs/link.svg"
+                          alt="link"
+                          sx={{ width: 18, height: 18 }}
+                        />
+                      </IconButton>
+                    }
                   >
                     Metamask
-                  </Typography>
-                </Box>
-                <Image
-                  disabledEffect
-                  src="/assets/images/svgs/link.svg"
-                  alt="link"
-                  sx={{ width: 18, height: 18 }}
-                />
-              </WalletBox>
-              <WalletBox>
-                <Box
-                  sx={{
-                    display: 'flex',
-                  }}
-                >
-                  <Image
-                    disabledEffect
-                    src="/assets/images/svgs/trustwallet.svg"
-                    alt="TrustWallet"
-                    sx={{ width: 30, height: 30 }}
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: '1.25rem',
-                      marginLeft: '0.5rem',
-                    }}
+                  </StyledWalletButton>
+                  <StyledWalletButton
+                    startIcon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/svgs/trustwallet.svg"
+                        alt="trustwallet"
+                        sx={{ width: 30, height: 30 }}
+                      />
+                    }
+                    endIcon={
+                      <IconButton
+                        sx={{
+                          background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                          borderRadius: '15px',
+                          height: 45,
+                          width: 45,
+                        }}
+                      >
+                        <Image
+                          disabledEffect
+                          src="/assets/images/svgs/link.svg"
+                          alt="link"
+                          sx={{
+                            width: 18,
+                            height: 18,
+                          }}
+                        />
+                      </IconButton>
+                    }
                   >
                     Trust Wallet
-                  </Typography>
-                </Box>
-                <Image
-                  disabledEffect
-                  src="/assets/images/svgs/link.svg"
-                  alt="link"
-                  sx={{ width: 18, height: 18 }}
-                />
-              </WalletBox>
-              <WalletBox>
-                <Box
-                  sx={{
-                    display: 'flex',
-                  }}
-                >
-                  <Image
-                    src="/assets/images/svgs/coinbase.svg"
-                    width={30}
-                    height={30}
-                    alt="Coinbase"
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: '1.25rem',
-                      marginLeft: '0.5rem',
-                    }}
+                  </StyledWalletButton>
+                  <StyledWalletButton
+                    startIcon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/svgs/coinbase.svg"
+                        alt="coinbase"
+                        sx={{ width: 30, height: 30 }}
+                      />
+                    }
+                    endIcon={
+                      <IconButton
+                        sx={{
+                          borderRadius: '15px',
+                          height: 45,
+                          width: 45,
+                        }}
+                      >
+                        <Image
+                          disabledEffect
+                          src="/assets/images/svgs/link.svg"
+                          alt="link"
+                          sx={{ width: 18, height: 18 }}
+                        />
+                      </IconButton>
+                    }
                   >
                     Coinbase Wallet
-                  </Typography>
-                </Box>
-                <Image
-                  disabledEffect
-                  src="/assets/images/svgs/link.svg"
-                  alt="link"
-                  sx={{ width: 18, height: 18 }}
-                />
-              </WalletBox>
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              Solana Wallets comming soon...
-            </TabPanel>
-            <TabPanel value={value} index={2} dir={theme.direction}>
-              Polygon Wallets comming soon...
-            </TabPanel>
-            {/* </SwipeableViews> */}
-
+                  </StyledWalletButton>
+                </Stack>
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                Solana Wallets comming soon...
+              </TabPanel>
+              <TabPanel value={value} index={2} dir={theme.direction}>
+                Polygon Wallets comming soon...
+              </TabPanel>
+            </SwipeableViews>
             <FormControlLabel
+              sx={{
+                '& .MuiFormControlLabel-label': {
+                  backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  fontSize: '15px',
+                  lineHeight: 1,
+                  fontWeight: 600,
+                },
+              }}
               control={
                 <Checkbox
                   checked={checkedRemind}
@@ -287,34 +300,27 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 />
               }
               label="Remind me later"
-              sx={{ color: theme.palette.primary.contrastText, py: 1 }}
             />
 
-            <Typography
-              sx={{
-                fontSize: '12px',
-                fontWeight: '400',
-                color: '#565A7F',
-              }}
-            >
+            <Typography variant="caption" sx={{ color: '#565A7F', textAlign: 'center' }} my={3}>
               Read-only access is given to verify the token holding of the wallet that is available
-              on the blockchain. This does not give Biples access to your funds or the power to act
-              on your behalf.
+              on the blockchain.
+              <br />
+              This does not give Biples access to your funds or the power to act on your behalf.
             </Typography>
 
-            <Box
+            <Stack
+              spacing={1}
+              alignItems="center"
+              px={3}
+              py={2}
               sx={{
-                borderRadius: '10px',
-                padding: '1rem',
-                background: '#68686838',
-                width: '200px',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '2rem',
+                borderRadius: '15px',
+                bgcolor: 'primary.main',
               }}
             >
               <SvgColor
-                src="assets/images/svgs/quiz.svg"
+                src="/assets/images/svgs/quiz.svg"
                 sx={{
                   width: 18,
                   height: 18,
@@ -325,15 +331,14 @@ const ConnectWalletModal: FC<ConnectWalletModalProps> = ({ open, handleClose }) 
                 sx={{
                   fontSize: '13px',
                   fontWeight: '600',
-                  color: theme.palette.primary.contrastText,
                 }}
               >
                 How to create a wallet?
               </Typography>
-            </Box>
-          </Box>
+            </Stack>
+          </Stack>
         </DialogContent>
-      </BootstrapDialog>
+      </StyledDialog>
     </div>
   );
 };

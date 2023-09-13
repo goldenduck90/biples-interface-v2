@@ -53,7 +53,7 @@ const typography = {
   fontFamily: TTFirsNeue.style.fontFamily,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
-  fontWeightBold: 700,
+  fontWeightBold: 600,
   h1: {
     fontWeight: 700,
     lineHeight: 1.25,
@@ -118,9 +118,9 @@ const typography = {
     // textTransform: 'uppercase',
   },
   button: {
-    fontWeight: 500,
-    lineHeight: 24 / 16,
-    fontSize: pxToRem(16),
+    fontWeight: 600,
+    lineHeight: 24 / 15,
+    fontSize: pxToRem(15),
     textTransform: 'none',
   },
 } as const;
