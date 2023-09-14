@@ -115,7 +115,7 @@ const typography = {
   overline: {
     lineHeight: 1,
     fontSize: pxToRem(10),
-    // textTransform: 'uppercase',
+    textTransform: 'none',
   },
   button: {
     fontWeight: 600,

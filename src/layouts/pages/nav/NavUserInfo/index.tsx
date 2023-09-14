@@ -41,7 +41,6 @@ export default function NavUserInfo({ openNav, onCloseNav }: Props) {
         height: 1,
         pl: 4,
         pr: 1,
-        pt: 6,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -49,15 +48,17 @@ export default function NavUserInfo({ openNav, onCloseNav }: Props) {
         },
       }}
     >
-      <Stack mb={4} alignItems="center">
-        <Logo sx={{ width: 'auto', height: 58 }} />
-      </Stack>
+      <Stack py={6}>
+        <Stack mb={4} alignItems="center">
+          <Logo sx={{ width: 'auto', height: 58 }} />
+        </Stack>
 
-      <Stack spacing={2.7} pb={6}>
-        <NavAccount />
-        <NavNFT />
-        <NFTSettings />
-        <ColorMode />
+        <Stack spacing={2.7}>
+          <NavAccount />
+          <NavNFT />
+          <NFTSettings />
+          <ColorMode />
+        </Stack>
       </Stack>
     </Scrollbar>
   );

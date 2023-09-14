@@ -1,25 +1,20 @@
 import { useEffect } from 'react';
-// next
 import { useRouter } from 'next/router';
-// @mui
-import { Stack, Box, Drawer } from '@mui/material';
+import { Box, Stack, Drawer, InputAdornment, OutlinedInput } from '@mui/material';
 // hooks
 import useResponsive from '../../../../hooks/useResponsive';
+import SvgColor from '../../../../components/svg-color';
+import Scrollbar from '../../../../components/scrollbar';
 // config
 import { NAV } from '../../../../config-global';
-// components
-import Scrollbar from '../../../../components/scrollbar';
-import Wallet from './Wallet';
-import Sections from './Sections';
-import NewsFeed from './NewsFeed';
-
-// ----------------------------------------------------------------------
+import PrivateMessages from './PrivateMessages';
+import GroupMessages from './GroupMessages';
+import Invites from './Invites';
 
 type Props = {
   openNav: boolean;
   onCloseNav: VoidFunction;
 };
-
 export default function NavHome({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
 
@@ -46,13 +41,49 @@ export default function NavHome({ openNav, onCloseNav }: Props) {
       }}
     >
       <Stack py={6}>
-        <Stack mb={4} alignItems="center">
-          <Wallet />
+        <Stack
+          mb={4}
+          sx={{
+            height: '58px',
+            bgcolor: 'primary.main',
+            px: 2,
+            py: 1,
+            borderRadius: '10px',
+          }}
+        >
+          <OutlinedInput
+            id="search-input"
+            defaultValue=""
+            fullWidth
+            placeholder="Search"
+            startAdornment={
+              <InputAdornment position="start">
+                <SvgColor
+                  src="/assets/images/svgs/search.svg"
+                  sx={{ width: 12, height: 12, bgcolor: 'text.secondary' }}
+                />
+              </InputAdornment>
+            }
+            sx={{
+              bgcolor: 'background.default',
+              px: 2,
+              height: 40,
+              borderRadius: '10px',
+            }}
+          />
         </Stack>
-
-        <Stack spacing={2.5}>
-          <Sections />
-          <NewsFeed />
+        <Stack
+          spacing={2}
+          px={2}
+          py={3}
+          sx={{
+            bgcolor: 'primary.main',
+            borderRadius: '10px',
+          }}
+        >
+          <GroupMessages />
+          <PrivateMessages />
+          <Invites />
         </Stack>
       </Stack>
     </Scrollbar>

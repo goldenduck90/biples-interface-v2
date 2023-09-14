@@ -17,7 +17,7 @@ import { StyledRoot } from '../styles';
 // ----------------------------------------------------------------------
 
 export default function NavAccount() {
-  const { replace } = useRouter();
+  const { replace, push } = useRouter();
 
   const { user, logout } = useAuthContext();
 
@@ -88,7 +88,7 @@ export default function NavAccount() {
               }}
             />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => push('/private-chat')}>
             <SvgColor
               src="/assets/images/svgs/mail.svg"
               sx={{

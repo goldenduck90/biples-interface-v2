@@ -107,7 +107,7 @@ const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
         <DialogContent dividers>
           <Grid container>
             {Array.from(Array(5)).map((_, index) => (
-              <LinkItem />
+              <LinkItem key={index} />
             ))}
           </Grid>
         </DialogContent>

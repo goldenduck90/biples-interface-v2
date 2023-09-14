@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Typography, Stack, MenuItem, ListItemButton, IconButton } from '@mui/material';
+import { Typography, Stack, MenuItem, ListItemButton, IconButton } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
 import MenuPopover from '../../../../components/menu-popover';
 import Image from '../../../../components/image';
@@ -44,7 +44,9 @@ const FeedItem = () => {
           </Stack>
           <Stack alignItems="center" justifyContent="space-between" spacing={0.5}>
             <Typography sx={{ fontSize: '10px' }}>14:40</Typography>
-            <Box
+            <Stack
+              alignItems="center"
+              justifyContent="center"
               sx={{
                 background: 'linear-gradient(265.96deg, #00A3FF 4.86%, #E140E4 93.41%)',
                 borderRadius: 50,
@@ -53,16 +55,16 @@ const FeedItem = () => {
               }}
             >
               <Typography
+                variant="caption"
+                lineHeight={1}
                 sx={{
-                  fontSize: '12px',
                   fontWeight: '600',
-                  color: '#fff',
-                  textAlign: 'center',
+                  color: 'white',
                 }}
               >
                 2
               </Typography>
-            </Box>
+            </Stack>
           </Stack>
         </Stack>
       </ListItemButton>
@@ -73,7 +75,7 @@ const FeedItem = () => {
       <MenuPopover
         open={openFeedMenu}
         onClose={handleCloseFeedMenu}
-        sx={{ width: 200, p: 0 }}
+        sx={{ width: 160, p: 1.5 }}
         disabledArrow
       >
         <MenuItem
