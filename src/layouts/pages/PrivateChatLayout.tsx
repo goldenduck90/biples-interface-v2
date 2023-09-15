@@ -39,7 +39,7 @@ export default function PrivateChatLayout({ children }: Props) {
 
   const renderContent = () => (
     <>
-      <HeaderPrivateChat onOpenLeftNav={handleOpenLeft} onOpenRightNav={handleOpenRight} />
+      <HeaderPrivateChat onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
 
       <Box
         sx={{
