@@ -297,7 +297,7 @@ const CreateCommunityDetailModal: FC<CreateCommunityDetailModalProps> = ({
                       disabledEffect
                       src="/assets/images/auth/unchecked.svg"
                       alt=""
-                      sx={{ width: 'auto', height: 14 }}
+                      sx={{ width: 14, height: 'auto' }}
                     />
                   }
                   checkedIcon={
@@ -305,7 +305,7 @@ const CreateCommunityDetailModal: FC<CreateCommunityDetailModalProps> = ({
                       disabledEffect
                       src="/assets/images/auth/checked.svg"
                       alt=""
-                      sx={{ width: 'auto', height: 14 }}
+                      sx={{ width: 14, height: 'auto' }}
                     />
                   }
                   inputProps={{ 'aria-label': 'controlled' }}
@@ -330,7 +330,7 @@ const CreateCommunityDetailModal: FC<CreateCommunityDetailModalProps> = ({
                       disabledEffect
                       src="/assets/images/auth/unchecked.svg"
                       alt=""
-                      sx={{ width: 'auto', height: 14 }}
+                      sx={{ width: 14, height: 'auto' }}
                     />
                   }
                   checkedIcon={
@@ -338,7 +338,7 @@ const CreateCommunityDetailModal: FC<CreateCommunityDetailModalProps> = ({
                       disabledEffect
                       src="/assets/images/auth/checked.svg"
                       alt=""
-                      sx={{ width: 'auto', height: 14 }}
+                      sx={{ width: 14, height: 'auto' }}
                     />
                   }
                   inputProps={{ 'aria-label': 'controlled' }}

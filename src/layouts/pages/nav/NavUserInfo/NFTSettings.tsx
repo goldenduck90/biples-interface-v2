@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FormControlLabel, Checkbox, Divider } from '@mui/material';
+import Image from '../../../../components/image';
+
 import { StyledRoot } from '../styles';
 
 export default function NFTSettings() {
@@ -22,9 +24,21 @@ export default function NFTSettings() {
           <Checkbox
             checked={checkedVisible}
             onChange={handleChangeVisible}
-            icon={<Image src="/assets/images/auth/unchecked.svg" alt="" width={12} height={12} />}
+            icon={
+              <Image
+                disabledEffect
+                src="/assets/images/auth/unchecked.svg"
+                alt=""
+                sx={{ width: 12, height: 'auto' }}
+              />
+            }
             checkedIcon={
-              <Image src="/assets/images/auth/checked.svg" alt="" width={12} height={12} />
+              <Image
+                disabledEffect
+                src="/assets/images/auth/checked.svg"
+                alt=""
+                sx={{ width: 12, height: 'auto' }}
+              />
             }
             inputProps={{ 'aria-label': 'controlled' }}
           />
@@ -37,9 +51,21 @@ export default function NFTSettings() {
           <Checkbox
             checked={checkedAlert}
             onChange={handleChangeAlert}
-            icon={<Image src="/assets/images/auth/unchecked.svg" alt="" width={12} height={12} />}
+            icon={
+              <Image
+                disabledEffect
+                src="/assets/images/auth/unchecked.svg"
+                alt=""
+                sx={{ width: 12, height: 'auto' }}
+              />
+            }
             checkedIcon={
-              <Image src="/assets/images/auth/checked.svg" alt="" width={12} height={12} />
+              <Image
+                disabledEffect
+                src="/assets/images/auth/checked.svg"
+                alt=""
+                sx={{ width: 12, height: 'auto' }}
+              />
             }
             inputProps={{ 'aria-label': 'controlled' }}
           />

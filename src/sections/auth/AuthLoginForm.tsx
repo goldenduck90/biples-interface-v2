@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as Yup from 'yup';
 // next
 import NextLink from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 // form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +26,8 @@ import { useAuthContext } from '../../auth/useAuthContext';
 import Iconify from '../../components/iconify';
 import FormProvider, { RHFTextField } from '../../components/hook-form';
 import SvgColor from '../../components/svg-color';
+import Image from '../../components/image';
+
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
@@ -142,9 +144,21 @@ export default function AuthLoginForm() {
             <Checkbox
               checked={checkedVisible}
               onChange={handleChangeVisible}
-              icon={<Image src="/assets/images/auth/unchecked.svg" alt="" width={12} height={12} />}
+              icon={
+                <Image
+                  disabledEffect
+                  src="/assets/images/auth/unchecked.svg"
+                  alt=""
+                  sx={{ width: 12, height: 'auto' }}
+                />
+              }
               checkedIcon={
-                <Image src="/assets/images/auth/checked.svg" alt="" width={12} height={12} />
+                <Image
+                  disabledEffect
+                  src="/assets/images/auth/checked.svg"
+                  alt=""
+                  sx={{ width: 12, height: 'auto' }}
+                />
               }
               inputProps={{ 'aria-label': 'controlled' }}
             />
