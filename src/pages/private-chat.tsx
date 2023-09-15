@@ -10,7 +10,7 @@ import { useSettingsContext } from '../components/settings';
 // sections
 import { Messages } from '../sections/chat';
 
-const StyledRootBox = styled('div')(({ theme }) => ({
+const StyledRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   padding: theme.spacing(3, 4),
@@ -38,9 +38,9 @@ export default function PrivateChat() {
       </Head>
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <StyledRootBox>
+        <StyledRoot>
           <Messages />
-        </StyledRootBox>
+        </StyledRoot>
       </Container>
     </>
   );
