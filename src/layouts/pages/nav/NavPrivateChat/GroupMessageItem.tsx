@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Typography,
-  Badge,
-  Avatar,
-  Stack,
-  IconButton,
-  MenuItem,
-  ListItemButton,
-} from '@mui/material';
+import { Typography, Badge, Avatar, Stack, ListItem, ListItemButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Iconify from '../../../../components/iconify';
-import MenuPopover from '../../../../components/menu-popover';
-import Image from '../../../../components/image';
-import SvgColor from '../../../../components/svg-color';
+import MessageRightContextMenu from './MessageRightContextMenu';
 
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 20,
@@ -21,135 +10,101 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 }));
 
 const GroupMessageItem = () => {
-  const [openMenu, setOpenMenu] = useState<HTMLElement | null>(null);
-
-  const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setOpenMenu(event.currentTarget);
+  const [contextMenu, setContextMenu] = useState<{
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null
+    );
   };
 
-  const handleCloseMenu = () => {
-    setOpenMenu(null);
+  const handleCloseFeedMenu = () => {
+    setContextMenu(null);
   };
 
   return (
-    <Stack direction="row" alignItems="center" justifyContent="space-between">
-      <ListItemButton disableGutters>
-        <Badge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          badgeContent={<SmallAvatar alt="Badge Avatar" src="/assets/images/1.png" />}
-        >
-          <Avatar
-            alt="Main Avatar"
-            src="/assets/images/2.png"
-            sx={{
-              width: 26,
-              height: 26,
-            }}
-          />
-        </Badge>
-        <Stack justifyContent="space=between" flexGrow={1} pl={2} spacing={0.3}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Typography
-              variant="body2"
-              fontWeight={500}
-              sx={{
-                backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-              }}
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      onContextMenu={handleContextMenu}
+      sx={{ cursor: 'context-menu' }}
+    >
+      <ListItem disablePadding>
+        <ListItemButton disableGutters>
+          <Stack direction="row" alignItems="center" flexGrow={1} justifyContent="space-between">
+            <Badge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              badgeContent={<SmallAvatar alt="Badge Avatar" src="/assets/images/1.png" />}
             >
-              Dave Bronx
-            </Typography>
-            <Typography variant="overline">14:40</Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Typography variant="overline">Dave is typing...</Typography>
-            <Stack
-              alignItems="center"
-              justifyContent="center"
-              sx={{
-                background: 'linear-gradient(265.96deg, #00A3FF 4.86%, #E140E4 93.41%)',
-                borderRadius: 50,
-                width: 16,
-                height: 16,
-              }}
-            >
-              <Typography
-                variant="overline"
+              <Avatar
+                alt="Main Avatar"
+                src="/assets/images/2.png"
                 sx={{
-                  fontWeight: '600',
-                  color: 'white',
+                  width: 26,
+                  height: 26,
                 }}
-              >
-                2
-              </Typography>
+              />
+            </Badge>
+            <Stack justifyContent="space=between" flexGrow={1} pl={2.5} spacing={0.3}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Typography
+                  variant="body2"
+                  fontWeight={500}
+                  sx={{
+                    backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                    WebkitBackgroundClip: 'text',
+                    color: 'transparent',
+                  }}
+                >
+                  Dave Bronx
+                </Typography>
+                <Typography variant="overline">14:40</Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Typography variant="overline">Dave is typing...</Typography>
+                <Stack
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{
+                    background: 'linear-gradient(265.96deg, #00A3FF 4.86%, #E140E4 93.41%)',
+                    borderRadius: 50,
+                    width: 16,
+                    height: 16,
+                  }}
+                >
+                  <Typography
+                    variant="overline"
+                    sx={{
+                      fontWeight: '600',
+                      color: 'white',
+                    }}
+                  >
+                    2
+                  </Typography>
+                </Stack>
+              </Stack>
             </Stack>
           </Stack>
-        </Stack>
-      </ListItemButton>
-      <IconButton size="small" onClick={handleOpenMenu}>
-        <Iconify icon="eva:more-vertical-fill" sx={{ color: 'primary.contrastText' }} />
-      </IconButton>
-      <MenuPopover
-        open={openMenu}
-        onClose={handleCloseMenu}
-        sx={{ width: 160, p: 1.5 }}
-        disabledArrow
-      >
-        <MenuItem
-          onClick={() => {
-            handleCloseMenu();
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <SvgColor
-              src="/assets/images/svgs/pin.svg"
-              sx={{
-                width: 14,
-                height: 14,
-              }}
-            />
-            <Typography variant="body1">Pin</Typography>
-          </Stack>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleCloseMenu();
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <SvgColor
-              src="/assets/images/svgs/eye.svg"
-              sx={{
-                width: 14,
-                height: 14,
-              }}
-            />
-            <Typography variant="body1">Mark as read</Typography>
-          </Stack>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleCloseMenu();
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Image
-              disabledEffect
-              src="/assets/images/svgs/delete.svg"
-              alt=""
-              sx={{
-                width: 14,
-                height: 14,
-              }}
-            />
-            <Typography variant="body1" color="#F44336">
-              Delete
-            </Typography>
-          </Stack>
-        </MenuItem>
-      </MenuPopover>
+        </ListItemButton>
+      </ListItem>
+
+      <MessageRightContextMenu
+        contextMenu={contextMenu}
+        handleCloseMessageMenu={handleCloseFeedMenu}
+      />
     </Stack>
   );
 };

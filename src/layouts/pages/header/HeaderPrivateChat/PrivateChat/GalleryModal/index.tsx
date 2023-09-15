@@ -1,32 +1,25 @@
 import { FC } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
-import Image from 'next/image';
 import {
-  Box,
-  Button,
-  Avatar,
-  InputAdornment,
-  OutlinedInput,
   IconButton,
-  DialogActions,
+  Stack,
   DialogContent,
   DialogTitle,
   Dialog,
+  Divider,
+  Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-import SvgColor from '../../../../../../components/svg-color';
+import Scrollbar from '../../../../../../components/scrollbar';
+import Image from '../../../../../../components/image';
 import Iconify from '../../../../../../components/iconify';
-import {
-  StyledRootBox,
-  StyledInfoBox,
-  StyledActionBox,
-  StyledProfileImageBox,
-  StyledButton,
-} from './styles';
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogTitle-root': {
+    padding: theme.spacing(3, 4),
+  },
   '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0, 3),
   },
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
@@ -39,51 +32,23 @@ export interface DialogTitleProps {
   onClose: any;
 }
 
-function BootstrapDialogTitle(props: DialogTitleProps) {
+function StyledDialogTitle(props: DialogTitleProps) {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <Iconify icon="eva:close-fill" />
-        </IconButton>
-      ) : null}
+    <DialogTitle {...other}>
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
+        {children}
+        {onClose ? (
+          <IconButton aria-label="close" onClick={onClose} sx={{ color: 'primary.contrastText' }}>
+            <Iconify icon="eva:close-fill" />
+          </IconButton>
+        ) : null}
+      </Stack>
+      <Divider sx={{ color: 'primary.main', mt: 3 }} />
     </DialogTitle>
   );
 }
-
-const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  textAlign: 'center',
-  borderRadius: '10px',
-}));
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  borderRadius: '10px',
-  margin: '10px 0px',
-  padding: '0px',
-}));
-
-const StyledJoinButton = styled(Button)(({ theme }) => ({
-  background:
-    theme.palette.mode === 'dark'
-      ? 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)'
-      : theme.palette.primary.main,
-  height: 58,
-  minWidth: 260,
-  marginTop: '20px',
-}));
 
 interface GalleryModalProps {
   open: boolean;
@@ -93,75 +58,71 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
   const theme = useTheme();
 
   return (
-    <div>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="gallery-dialog-title"
-        open={open}
-        maxWidth="xl"
-        PaperProps={{
-          style: {
-            backgroundImage: 'linear-gradient(rgba(21,21,21,0.85), rgba(21,21,21,0.85))',
-            backgroundColor: 'rgba(0,0,0,0)',
-            backdropFilter: 'blur(7.5px)',
-          },
-        }}
-      >
-        <BootstrapDialogTitle id="gallery-dialog-title" onClose>
-          Gallery
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <h4>December</h4>
-          <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+    <StyledDialog
+      onClose={handleClose}
+      aria-labelledby="gallery-dialog-title"
+      open={open}
+      maxWidth="xl"
+      PaperProps={{
+        style: {
+          background: 'rgba(21, 21, 21, 0.85)',
+          backdropFilter: 'blur(7.5px)',
+        },
+      }}
+    >
+      <StyledDialogTitle id="gallery-dialog-title" onClose={handleClose}>
+        <Typography variant="subtitle1">Gallery</Typography>
+      </StyledDialogTitle>
+      <DialogContent sx={{ width: 600 }}>
+        <Stack spacing={2}>
+          <Typography variant="body1" fontWeight={600}>
+            December
+          </Typography>
+          <Grid container spacing={1} columns={10}>
+            {Array.from(Array(10)).map((_, index) => (
+              <Grid key={index} xs={2}>
                 <Image
+                  disabledEffect
                   src="/assets/images/1.png"
                   alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
+                  sx={{ width: 100, height: 'auto', borderRadius: '10px' }}
                 />
               </Grid>
             ))}
           </Grid>
-          <h4>November</h4>
-          <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+          <Typography variant="body1" fontWeight={600}>
+            November
+          </Typography>
+          <Grid container spacing={1} columns={10}>
+            {Array.from(Array(10)).map((_, index) => (
+              <Grid key={index} xs={2}>
                 <Image
+                  disabledEffect
                   src="/assets/images/1.png"
                   alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
+                  sx={{ width: 100, height: 'auto', borderRadius: '10px' }}
                 />
               </Grid>
             ))}
           </Grid>
-          <h4>October</h4>
-          <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+          <Typography variant="body1" fontWeight={600}>
+            October
+          </Typography>
+          <Grid container spacing={1} columns={10}>
+            {Array.from(Array(10)).map((_, index) => (
+              <Grid key={index} xs={2}>
                 <Image
+                  disabledEffect
                   src="/assets/images/1.png"
                   alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
+                  sx={{ width: 100, height: 'auto', borderRadius: '10px' }}
                 />
               </Grid>
             ))}
           </Grid>
-        </DialogContent>
-      </BootstrapDialog>
-    </div>
+        </Stack>
+      </DialogContent>
+    </StyledDialog>
   );
 };
 

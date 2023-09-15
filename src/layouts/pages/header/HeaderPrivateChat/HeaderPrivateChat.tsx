@@ -1,38 +1,32 @@
 import * as React from 'react';
-import { FC } from 'react';
 import {
   Avatar,
   Badge,
   AppBar,
-  Box,
   Stack,
   Toolbar,
   IconButton,
-  Button,
   Slide,
   useScrollTrigger,
   Typography,
 } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
-import Image from 'next/image';
-import SimpleBar from 'simplebar-react';
+// config
+import { HEADER, NAV } from '../../../../config-global';
+// hooks
+import useResponsive from '../../../../hooks/useResponsive';
+// components
+import Iconify from '../../../../components/iconify';
 import SvgColor from '../../../../components/svg-color';
-import {
-  LEFT_NAV_WIDTH,
-  RIGHT_NAV_WIDTH,
-  APP_BAR_MOBILE,
-  APP_BAR_DESKTOP,
-} from '../../../../constants/index';
-// import { COMMUNITIES } from '../../../../constansts/communities';
+import Scrollbar from '../../../../components/scrollbar';
 import GalleryModal from './PrivateChat/GalleryModal';
 import FileModal from './PrivateChat/FileModal';
 import LinkModal from './PrivateChat/LinkModal';
 
-interface CommunityProps {
-  name: string;
-  avatarUrl: string;
-  verified: boolean;
-}
+type Props = {
+  onOpenNavLeft?: VoidFunction;
+  onOpenNavRight?: VoidFunction;
+};
 
 interface HideOnScrollProps {
   children: React.ReactElement;
@@ -78,262 +72,196 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Scrollbar = styled(SimpleBar)(({ theme }) => ({
-  '& .simplebar-scrollbar': {
-    '&:before': {
-      backgroundColor: theme.palette.primary.contrastText,
-    },
-    '&.simplebar-visible:before': {
-      opacity: 1,
-    },
-  },
-}));
-
 export const StyledIconButton = styled(IconButton)(({ theme }) => ({
   borderRadius: '14px',
   width: '58px',
   height: '58px',
   backgroundColor: theme.palette.primary.main,
-  borderColor: '#BBBBBB',
-  borderStyle: theme.palette.mode === 'dark' ? 'none' : 'solid',
-  borderWidth: '1px',
+  backdropFilter: 'blur(2px)',
 }));
 
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  boxShadow: 'none',
-  [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - ${LEFT_NAV_WIDTH + RIGHT_NAV_WIDTH}px)`,
-    left: LEFT_NAV_WIDTH,
-  },
-}));
-
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  minHeight: APP_BAR_MOBILE,
-  [theme.breakpoints.up('lg')]: {
-    minHeight: APP_BAR_DESKTOP,
-    padding: theme.spacing(5, 0, 0, 0),
-  },
-}));
-
-const StyledAddCommunityButton = styled(Button)(({ theme }) => ({
-  background:
-    theme.palette.mode === 'dark'
-      ? 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)'
-      : theme.palette.primary.main,
-  height: 58,
-  minWidth: 260,
-  paddingLeft: 44,
-  paddingRight: 44,
-}));
-
-const StyledCommunityButton = styled(Button)(({ theme }) => ({
-  height: 58,
-  minWidth: 180,
-  paddingLeft: 16,
-  marginLeft: theme.spacing(2),
-  textAlign: 'start',
-}));
-
-interface TopNavProps {
-  onOpenLeftNav: () => void;
-  onOpenRightNav: () => void;
-}
-
-const HeaderPrivateChat: FC<TopNavProps> = ({ onOpenLeftNav, onOpenRightNav }) => {
+export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Props) {
   const theme = useTheme();
-  const { mode } = theme.palette;
 
-  const [openGallery, setGalleryOpen] = React.useState(false);
-  const handleClickGalleryOpen = () => {
-    setGalleryOpen(true);
-  };
-  const handleGalleryClose = () => {
-    setGalleryOpen(false);
-  };
+  const isDesktop = useResponsive('up', 'lg');
 
-  const [openFile, setFileOpen] = React.useState(false);
-  const handleClickFileOpen = () => {
-    setFileOpen(true);
-  };
-  const handleFileClose = () => {
-    setFileOpen(false);
+  const [openGallery, setOpenGallery] = React.useState(false);
+  const [openFile, setOpenFile] = React.useState(false);
+  const [openLink, setOpenLink] = React.useState(false);
+
+  const handleOpenGallery = () => {
+    setOpenGallery(true);
   };
 
-  const [openLink, setLinkOpen] = React.useState(false);
-  const handleClickLinkOpen = () => {
-    setLinkOpen(true);
+  const handleCloseGallery = () => {
+    setOpenGallery(false);
   };
-  const handleLinkClose = () => {
-    setLinkOpen(false);
+
+  const handleOpenFile = () => {
+    setOpenFile(true);
   };
-  return (
-    <HideOnScroll>
-      <StyledAppBar color="transparent" enableColorOnDark>
-        <StyledToolbar>
-          <IconButton
-            onClick={onOpenLeftNav}
-            sx={{
-              display: {
-                xs: 'inline-flex',
-                lg: 'none',
-              },
-            }}
-          >
+
+  const handleCloseFile = () => {
+    setOpenFile(false);
+  };
+
+  const handleOpenLink = () => {
+    setOpenLink(true);
+  };
+
+  const handleCloseLink = () => {
+    setOpenLink(false);
+  };
+
+  const renderContent = (
+    <>
+      {!isDesktop && (
+        <IconButton onClick={onOpenNavLeft} sx={{ mr: 1, color: 'text.primary' }}>
+          <Iconify icon="eva:menu-2-fill" />
+        </IconButton>
+      )}
+      <Scrollbar
+        sx={{
+          width: 1,
+          pb: 2,
+          '& .simplebar-content': {
+            width: 1,
+            display: 'flex',
+            flexDirection: 'row',
+          },
+        }}
+      >
+        <Stack direction="row" alignItems="center" mx="auto" spacing={2}>
+          <StyledIconButton>
             <SvgColor
-              src="/assets/icons/menu.svg"
+              src="/assets/images/svgs/search-white.svg"
               sx={{
-                width: 'auto',
-                height: 13,
-                color: theme.palette.primary.contrastText,
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
               }}
             />
-          </IconButton>
-          <Scrollbar
+          </StyledIconButton>
+          <StyledIconButton>
+            <SvgColor
+              src="/assets/images/svgs/videocam.svg"
+              sx={{
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
+              }}
+            />
+          </StyledIconButton>
+          <StyledIconButton>
+            <SvgColor
+              src="/assets/images/svgs/call.svg"
+              sx={{
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
+              }}
+            />
+          </StyledIconButton>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
             sx={{
-              width: 1,
-              pb: 2,
-              '& .simplebar-content': {
-                width: 1,
-                display: 'flex',
-                flexDirection: 'row',
-              },
+              bgcolor: 'primary.main',
+              borderRadius: '14px',
+              height: '58px',
+              px: 10,
             }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                width: '100%',
-                whiteSpace: 'nowrap',
-              }}
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
             >
-              <StyledIconButton sx={{ mr: 2 }}>
-                <SvgColor
-                  src="/assets/images/svgs/search-white.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <StyledIconButton sx={{ mr: 2 }}>
-                <SvgColor
-                  src="/assets/images/svgs/videocam.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <StyledIconButton sx={{ mr: 2 }}>
-                <SvgColor
-                  src="/assets/images/svgs/call.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <Box
+              <Avatar alt="User" src="/assets/images/4.png" sx={{ width: 42, height: 42 }} />
+            </StyledBadge>
+            <Stack>
+              <Typography
+                variant="subtitle1"
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: 'primary.main',
-                  borderColor: '#BBBBBB',
-                  borderStyle: theme.palette.mode === 'dark' ? 'none' : 'solid',
-                  borderWidth: '1px',
-                  borderRadius: '14px',
-                  height: '58px',
-                  px: 10,
-                  mr: 2,
+                  backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
                 }}
               >
-                <StyledBadge
-                  overlap="circular"
-                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                  variant="dot"
-                >
-                  <Avatar alt="User" src="/assets/images/4.png" sx={{ width: 42, height: 42 }} />
-                </StyledBadge>
-                <Box sx={{ ml: 2 }}>
-                  <Typography
-                    fontSize={20}
-                    fontWeight={600}
-                    sx={{
-                      backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
-                      WebkitBackgroundClip: 'text',
-                      color: 'transparent',
-                    }}
-                  >
-                    Andrew Jackson
-                  </Typography>
-                  <Typography fontSize={12} color="primary.contrastText">
-                    Last seen 2 hours ago
-                  </Typography>
-                </Box>
-              </Box>
-              <StyledIconButton sx={{ mr: 2 }} onClick={handleClickGalleryOpen}>
-                <SvgColor
-                  src="/assets/images/svgs/image.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <GalleryModal open={openGallery} handleClose={handleGalleryClose} />
-              <StyledIconButton sx={{ mr: 2 }} onClick={handleClickFileOpen}>
-                <SvgColor
-                  src="/assets/images/svgs/text_snippet.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <FileModal open={openFile} handleClose={handleFileClose} />
-              <StyledIconButton onClick={handleClickLinkOpen}>
-                <SvgColor
-                  src="/assets/images/svgs/link.svg"
-                  sx={{
-                    width: 26,
-                    height: 26,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                />
-              </StyledIconButton>
-              <LinkModal open={openLink} handleClose={handleLinkClose} />
-            </Box>
-          </Scrollbar>
-          <IconButton
-            onClick={onOpenRightNav}
-            sx={{
-              display: {
-                xs: 'inline-flex',
-                lg: 'none',
-              },
-            }}
-          >
+                Andrew Jackson
+              </Typography>
+              <Typography variant="caption">Last seen 2 hours ago</Typography>
+            </Stack>
+          </Stack>
+          <StyledIconButton onClick={handleOpenGallery}>
             <SvgColor
-              src="/assets/icons/menu.svg"
+              src="/assets/images/svgs/image.svg"
               sx={{
-                width: 'auto',
-                height: 13,
-                color: theme.palette.primary.contrastText,
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
               }}
             />
-          </IconButton>
-        </StyledToolbar>
-      </StyledAppBar>
+          </StyledIconButton>
+          <StyledIconButton onClick={handleOpenFile}>
+            <SvgColor
+              src="/assets/images/svgs/text_snippet.svg"
+              sx={{
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
+              }}
+            />
+          </StyledIconButton>
+          <StyledIconButton onClick={handleOpenLink}>
+            <SvgColor
+              src="/assets/images/svgs/link.svg"
+              sx={{
+                width: 26,
+                height: 26,
+                color: 'primary.contrastText',
+              }}
+            />
+          </StyledIconButton>
+        </Stack>
+      </Scrollbar>
+      {!isDesktop && (
+        <IconButton onClick={onOpenNavRight} sx={{ ml: 1, color: 'text.primary' }}>
+          <Iconify icon="eva:menu-2-fill" />
+        </IconButton>
+      )}
+
+      <GalleryModal open={openGallery} handleClose={handleCloseGallery} />
+
+      <FileModal open={openFile} handleClose={handleCloseFile} />
+
+      <LinkModal open={openLink} handleClose={handleCloseLink} />
+    </>
+  );
+  return (
+    <HideOnScroll>
+      <AppBar
+        color="transparent"
+        enableColorOnDark
+        sx={{
+          boxShadow: 'none',
+          height: HEADER.H_MOBILE,
+          zIndex: theme.zIndex.appBar + 1,
+          transition: theme.transitions.create(['height'], {
+            duration: theme.transitions.duration.shorter,
+          }),
+          ...(isDesktop && {
+            width: `calc(100% - ${NAV.W_LEFT_NAV + NAV.W_RIGHT_NAV + 1}px)`,
+            right: `${NAV.W_RIGHT_NAV + 1}px`,
+            mt: 6,
+            height: HEADER.H_HOME_DESKTOP,
+          }),
+        }}
+      >
+        <Toolbar sx={{ height: 1 }}>{renderContent}</Toolbar>
+      </AppBar>
     </HideOnScroll>
   );
-};
-
-export default HeaderPrivateChat;
+}
