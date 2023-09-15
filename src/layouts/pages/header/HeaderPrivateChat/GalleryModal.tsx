@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useTheme, styled } from '@mui/material/styles';
+import { FC, useState } from 'react';
+import { styled } from '@mui/material/styles';
 import {
   IconButton,
   Stack,
@@ -10,23 +10,20 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-import Scrollbar from '../../../../../../components/scrollbar';
-import Image from '../../../../../../components/image';
-import Iconify from '../../../../../../components/iconify';
+import Image from '../../../../components/image';
+import Iconify from '../../../../components/iconify';
+import RightContextMenu from './RightContextMenu';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogTitle-root': {
     padding: theme.spacing(3, 4),
   },
   '& .MuiDialogContent-root': {
-    padding: theme.spacing(0, 3),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0, 4, 3, 4),
   },
 }));
 
-export interface DialogTitleProps {
+interface DialogTitleProps {
   id: string;
   children?: React.ReactNode;
   onClose: any;
@@ -55,7 +52,28 @@ interface GalleryModalProps {
   handleClose: () => void;
 }
 const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
-  const theme = useTheme();
+  const [contextMenu, setContextMenu] = useState<{
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null
+    );
+  };
+
+  const handleCloseMenu = () => {
+    setContextMenu(null);
+  };
 
   return (
     <StyledDialog
@@ -80,7 +98,12 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
           </Typography>
           <Grid container spacing={1} columns={10}>
             {Array.from(Array(10)).map((_, index) => (
-              <Grid key={index} xs={2}>
+              <Grid
+                key={index}
+                xs={2}
+                onContextMenu={handleContextMenu}
+                sx={{ cursor: 'context-menu' }}
+              >
                 <Image
                   disabledEffect
                   src="/assets/images/1.png"
@@ -95,7 +118,12 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
           </Typography>
           <Grid container spacing={1} columns={10}>
             {Array.from(Array(10)).map((_, index) => (
-              <Grid key={index} xs={2}>
+              <Grid
+                key={index}
+                xs={2}
+                onContextMenu={handleContextMenu}
+                sx={{ cursor: 'context-menu' }}
+              >
                 <Image
                   disabledEffect
                   src="/assets/images/1.png"
@@ -110,7 +138,12 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
           </Typography>
           <Grid container spacing={1} columns={10}>
             {Array.from(Array(10)).map((_, index) => (
-              <Grid key={index} xs={2}>
+              <Grid
+                key={index}
+                xs={2}
+                onContextMenu={handleContextMenu}
+                sx={{ cursor: 'context-menu' }}
+              >
                 <Image
                   disabledEffect
                   src="/assets/images/1.png"
@@ -122,6 +155,8 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
           </Grid>
         </Stack>
       </DialogContent>
+
+      <RightContextMenu contextMenu={contextMenu} handleCloseMenu={handleCloseMenu} />
     </StyledDialog>
   );
 };

@@ -30,7 +30,7 @@ const PrivateMessageItem = (props: PrivateMessageItemProps) => {
     );
   };
 
-  const handleCloseFeedMenu = () => {
+  const handleCloseMenu = () => {
     setContextMenu(null);
   };
 
@@ -103,7 +103,7 @@ const PrivateMessageItem = (props: PrivateMessageItemProps) => {
 
       <MessageRightContextMenu
         contextMenu={contextMenu}
-        handleCloseMessageMenu={handleCloseFeedMenu}
+        handleCloseMessageMenu={handleCloseMenu}
       />
     </Stack>
   );

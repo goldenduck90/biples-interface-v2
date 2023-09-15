@@ -29,7 +29,7 @@ const GroupMessageItem = () => {
     );
   };
 
-  const handleCloseFeedMenu = () => {
+  const handleCloseMenu = () => {
     setContextMenu(null);
   };
 
@@ -103,7 +103,7 @@ const GroupMessageItem = () => {
 
       <MessageRightContextMenu
         contextMenu={contextMenu}
-        handleCloseMessageMenu={handleCloseFeedMenu}
+        handleCloseMessageMenu={handleCloseMenu}
       />
     </Stack>
   );

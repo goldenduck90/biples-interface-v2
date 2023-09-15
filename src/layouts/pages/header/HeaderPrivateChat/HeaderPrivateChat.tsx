@@ -19,9 +19,9 @@ import useResponsive from '../../../../hooks/useResponsive';
 import Iconify from '../../../../components/iconify';
 import SvgColor from '../../../../components/svg-color';
 import Scrollbar from '../../../../components/scrollbar';
-import GalleryModal from './PrivateChat/GalleryModal';
-import FileModal from './PrivateChat/FileModal';
-import LinkModal from './PrivateChat/LinkModal';
+import GalleryModal from './GalleryModal';
+import FileModal from './FileModal';
+import LinkModal from './LinkModal';
 
 type Props = {
   onOpenNavLeft?: VoidFunction;
@@ -170,8 +170,9 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
             sx={{
               bgcolor: 'primary.main',
               borderRadius: '14px',
-              height: '58px',
-              px: 10,
+              height: 58,
+              width: 385,
+              px: 'auto',
             }}
           >
             <StyledBadge
