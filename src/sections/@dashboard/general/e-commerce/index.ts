@@ -6,4 +6,3 @@ export { default as EcommerceSalesOverview } from './EcommerceSalesOverview';
 export { default as EcommerceWidgetSummary } from './EcommerceWidgetSummary';
 export { default as EcommerceLatestProducts } from './EcommerceLatestProducts';
 export { default as EcommerceCurrentBalance } from './EcommerceCurrentBalance';
-export { default as MessageItem } from './MessageItem';
