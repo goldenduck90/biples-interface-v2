@@ -15,7 +15,7 @@ type Props = {
   openNav: boolean;
   onCloseNav: VoidFunction;
 };
-export default function NavHome({ openNav, onCloseNav }: Props) {
+export default function NavPrivateChat({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
 
   const isDesktop = useResponsive('up', 'lg');

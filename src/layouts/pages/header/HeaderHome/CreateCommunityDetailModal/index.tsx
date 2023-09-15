@@ -20,11 +20,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // utils
 import DragDropFile from './DragDropFile';
 import { StyledOutlinedInput, StyledItem } from './styles';
-import { CustomFile } from '../../../../components/upload';
-import Image from '../../../../components/image';
-import Iconify from '../../../../components/iconify';
-import { useSnackbar } from '../../../../components/snackbar';
-import FormProvider, { RHFUploadAvatar } from '../../../../components/hook-form';
+import { CustomFile } from '../../../../../components/upload';
+import Image from '../../../../../components/image';
+import Iconify from '../../../../../components/iconify';
+import { useSnackbar } from '../../../../../components/snackbar';
+import FormProvider, { RHFUploadAvatar } from '../../../../../components/hook-form';
 
 export const StyledLoadingButton = styled(LoadingButton)(({ theme }) => ({
   background: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',

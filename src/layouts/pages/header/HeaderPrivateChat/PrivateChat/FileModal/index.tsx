@@ -1,28 +1,23 @@
 import { FC } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
-import Image from 'next/image';
+// import Image from 'next/image';
+
+// import PropTypes from 'prop-types';
 import {
-  Box,
   Button,
-  Avatar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Box,
   InputAdornment,
   OutlinedInput,
-  IconButton,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Dialog,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-import SvgColor from '../../../../../components/svg-color';
-import Iconify from '../../../../../components/iconify';
-import {
-  StyledRootBox,
-  StyledInfoBox,
-  StyledActionBox,
-  StyledProfileImageBox,
-  StyledButton,
-} from './styles';
+// import SvgColor from '../../../../../components/svg-color';
+import FileItem from './FileItem';
+import Iconify from '../../../../../../components/iconify';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -85,11 +80,11 @@ const StyledJoinButton = styled(Button)(({ theme }) => ({
   marginTop: '20px',
 }));
 
-interface GalleryModalProps {
+interface FileModalProps {
   open: boolean;
   handleClose: () => void;
 }
-const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
+const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
   const theme = useTheme();
 
   return (
@@ -98,7 +93,7 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="gallery-dialog-title"
         open={open}
-        maxWidth="xl"
+        maxWidth="sm"
         PaperProps={{
           style: {
             backgroundImage: 'linear-gradient(rgba(21,21,21,0.85), rgba(21,21,21,0.85))',
@@ -108,55 +103,13 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
         }}
       >
         <BootstrapDialogTitle id="gallery-dialog-title" onClose>
-          Gallery
+          Files
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <h4>December</h4>
           <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
-                <Image
-                  src="/assets/images/1.png"
-                  alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          <h4>November</h4>
-          <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
-                <Image
-                  src="/assets/images/1.png"
-                  alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          <h4>October</h4>
-          <Grid container>
-            {Array.from(Array(12)).map((_, index) => (
-              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
-                <Image
-                  src="/assets/images/1.png"
-                  alt=""
-                  width={83}
-                  height={83}
-                  style={{
-                    borderRadius: '10px',
-                  }}
-                />
-              </Grid>
+            {Array.from(Array(5)).map((_, index) => (
+              <FileItem key={index} />
             ))}
           </Grid>
         </DialogContent>
@@ -165,4 +118,4 @@ const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
   );
 };
 
-export default GalleryModal;
+export default FileModal;

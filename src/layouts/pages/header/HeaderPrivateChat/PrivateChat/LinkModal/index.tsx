@@ -14,9 +14,9 @@ import {
   OutlinedInput,
 } from '@mui/material';
 
-import SvgColor from '../../../../../components/svg-color';
+import SvgColor from '../../../../../../components/svg-color';
 import LinkItem from './LinkItem';
-import Iconify from '../../../../../components/iconify';
+import Iconify from '../../../../../../components/iconify';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {

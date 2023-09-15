@@ -45,9 +45,9 @@ const MessageItem = (props: MessageItemProps) => {
               fontSize={15}
               fontWeight={500}
               sx={{
-                background: 'linear-gradient(265.96deg, #00A3FF 4.86%, #E140E4 93.41%)',
-                '-webkit-background-clip': 'text',
-                '-webkit-text-fill-color': 'transparent',
+                backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
               }}
             >
               Dave Bronx

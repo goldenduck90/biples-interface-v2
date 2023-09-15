@@ -3,8 +3,8 @@ import { FC } from 'react';
 import { styled } from '@mui/material/styles';
 import { Dialog, DialogContent, IconButton, Stack } from '@mui/material';
 import CreateCommunityDetailModal from '../CreateCommunityDetailModal';
-import Iconify from '../../../../components/iconify';
-import Image from '../../../../components/image';
+import Iconify from '../../../../../components/iconify';
+import Image from '../../../../../components/image';
 import { StyledButton } from './styles';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({

@@ -14,18 +14,18 @@ import {
   Typography,
 } from '@mui/material';
 // hooks
-import useResponsive from '../../../hooks/useResponsive';
+import useResponsive from '../../../../hooks/useResponsive';
 // config
-import { HEADER, NAV } from '../../../config-global';
+import { HEADER, NAV } from '../../../../config-global';
 // components
-import Iconify from '../../../components/iconify';
-import Scrollbar from '../../../components/scrollbar';
-import SvgColor from '../../../components/svg-color';
-import Image from '../../../components/image';
-import MenuPopover from '../../../components/menu-popover';
-import { CustomAvatar } from '../../../components/custom-avatar';
+import Iconify from '../../../../components/iconify';
+import Scrollbar from '../../../../components/scrollbar';
+import SvgColor from '../../../../components/svg-color';
+import Image from '../../../../components/image';
+import MenuPopover from '../../../../components/menu-popover';
+import { CustomAvatar } from '../../../../components/custom-avatar';
 //
-import { COMMUNITIES } from '../../../constants/communities';
+import { COMMUNITIES } from '../../../../constants/communities';
 import CreateCommunityModal from './CreateCommunityModal';
 import JoinCommunityModal from './JoinCommunityModal';
 // ----------------------------------------------------------------------
@@ -67,7 +67,7 @@ const StyledCommunityButton = styled(Button)(({ theme }) => ({
   minWidth: 180,
 }));
 
-export default function HomeHeader({ onOpenNavLeft, onOpenNavRight }: Props) {
+export default function HeaderHome({ onOpenNavLeft, onOpenNavRight }: Props) {
   const theme = useTheme();
 
   const isDesktop = useResponsive('up', 'lg');

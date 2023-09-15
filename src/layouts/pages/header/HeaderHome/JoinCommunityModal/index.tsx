@@ -10,8 +10,8 @@ import {
   Divider,
 } from '@mui/material';
 import CommunityItem from './CommunityItem';
-import SvgColor from '../../../../components/svg-color';
-import Iconify from '../../../../components/iconify';
+import SvgColor from '../../../../../components/svg-color';
+import Iconify from '../../../../../components/iconify';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogTitle-root': {

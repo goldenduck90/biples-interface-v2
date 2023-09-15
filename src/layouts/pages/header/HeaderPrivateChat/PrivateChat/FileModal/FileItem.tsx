@@ -3,7 +3,7 @@ import { Box, Typography, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import { StyledActionGroupBox } from './styles';
-import SvgColor from '../../../../../components/svg-color';
+import SvgColor from '../../../../../../components/svg-color';
 
 const FileItem = () => {
   const theme = useTheme();

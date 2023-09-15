@@ -5,9 +5,8 @@ import { Box } from '@mui/material';
 import AuthGuard from '../../auth/AuthGuard';
 //
 import Main from './Main';
-import { PrivateChatHeader } from './header';
-import NavUserInfo from './nav/NavUserInfo';
-import NavPrivateChat from './nav/NavPrivateChat';
+import { HeaderPrivateChat } from './header';
+import { NavUserInfo, NavPrivateChat } from './nav';
 
 // ----------------------------------------------------------------------
 
@@ -36,11 +35,11 @@ export default function PrivateChatLayout({ children }: Props) {
   };
 
   const renderNavUserInfo = <NavUserInfo openNav={openLeft} onCloseNav={handleCloseLeft} />;
-  const renderNavPrivateChat = <NavPrivateChat open={openRight} onClose={handleCloseRight} />;
+  const renderNavPrivateChat = <NavPrivateChat openNav={openRight} onCloseNav={handleCloseRight} />;
 
   const renderContent = () => (
     <>
-      <PrivateChatHeader onOpenLeftNav={handleOpenLeft} onOpenRightNav={handleOpenRight} />
+      <HeaderPrivateChat onOpenLeftNav={handleOpenLeft} onOpenRightNav={handleOpenRight} />
 
       <Box
         sx={{

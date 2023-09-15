@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Typography, Stack } from '@mui/material';
-import SvgColor from '../../../../components/svg-color';
-import Image from '../../../../components/image';
+import SvgColor from '../../../../../components/svg-color';
+import Image from '../../../../../components/image';
 import { StyledItem, StyledButton } from './styles';
 import SubscriptionMenu from './SubscriptionMenu';
 

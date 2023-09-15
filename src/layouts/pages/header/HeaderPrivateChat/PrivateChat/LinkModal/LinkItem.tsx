@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 import Image from 'next/image';
 import { useTheme } from '@mui/material/styles';
-import SvgColor from '../../../../../components/svg-color';
+import SvgColor from '../../../../../../components/svg-color';
 import { StyledActionGroupBox } from './styles';
 
 const LinkItem = () => {

@@ -5,9 +5,8 @@ import { Box } from '@mui/material';
 import AuthGuard from '../../auth/AuthGuard';
 //
 import Main from './Main';
-import { HomeHeader } from './header';
-import NavUserInfo from './nav/NavUserInfo';
-import NavHome from './nav/NavHome';
+import { HeaderHome } from './header';
+import { NavUserInfo, NavHome } from './nav';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +39,7 @@ export default function HomeLayout({ children }: Props) {
 
   const renderContent = () => (
     <>
-      <HomeHeader onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
+      <HeaderHome onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
 
       <Box
         sx={{

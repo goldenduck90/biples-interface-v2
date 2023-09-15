@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Typography, Divider, Menu, Stack } from '@mui/material';
-import SvgColor from '../../../../../components/svg-color';
+import SvgColor from '../../../../../../components/svg-color';
 import { StyledIconButton } from './styles';
 
 interface SubscriptionMenuProps {

@@ -1,23 +1,28 @@
 import { FC } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
-// import Image from 'next/image';
-
-// import PropTypes from 'prop-types';
+import Image from 'next/image';
 import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  IconButton,
   Box,
+  Button,
+  Avatar,
   InputAdornment,
   OutlinedInput,
+  IconButton,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dialog,
   Unstable_Grid2 as Grid,
 } from '@mui/material';
-// import SvgColor from '../../../../../components/svg-color';
-import FileItem from './FileItem';
-import Iconify from '../../../../../components/iconify';
+import SvgColor from '../../../../../../components/svg-color';
+import Iconify from '../../../../../../components/iconify';
+import {
+  StyledRootBox,
+  StyledInfoBox,
+  StyledActionBox,
+  StyledProfileImageBox,
+  StyledButton,
+} from './styles';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -80,11 +85,11 @@ const StyledJoinButton = styled(Button)(({ theme }) => ({
   marginTop: '20px',
 }));
 
-interface FileModalProps {
+interface GalleryModalProps {
   open: boolean;
   handleClose: () => void;
 }
-const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
+const GalleryModal: FC<GalleryModalProps> = ({ open, handleClose }) => {
   const theme = useTheme();
 
   return (
@@ -93,7 +98,7 @@ const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="gallery-dialog-title"
         open={open}
-        maxWidth="sm"
+        maxWidth="xl"
         PaperProps={{
           style: {
             backgroundImage: 'linear-gradient(rgba(21,21,21,0.85), rgba(21,21,21,0.85))',
@@ -103,13 +108,55 @@ const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
         }}
       >
         <BootstrapDialogTitle id="gallery-dialog-title" onClose>
-          Files
+          Gallery
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <h4>December</h4>
           <Grid container>
-            {Array.from(Array(5)).map((_, index) => (
-              <FileItem key={index} />
+            {Array.from(Array(12)).map((_, index) => (
+              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+                <Image
+                  src="/assets/images/1.png"
+                  alt=""
+                  width={83}
+                  height={83}
+                  style={{
+                    borderRadius: '10px',
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <h4>November</h4>
+          <Grid container>
+            {Array.from(Array(12)).map((_, index) => (
+              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+                <Image
+                  src="/assets/images/1.png"
+                  alt=""
+                  width={83}
+                  height={83}
+                  style={{
+                    borderRadius: '10px',
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <h4>October</h4>
+          <Grid container>
+            {Array.from(Array(12)).map((_, index) => (
+              <Grid key={index} xs={2} style={{ textAlign: 'center' }}>
+                <Image
+                  src="/assets/images/1.png"
+                  alt=""
+                  width={83}
+                  height={83}
+                  style={{
+                    borderRadius: '10px',
+                  }}
+                />
+              </Grid>
             ))}
           </Grid>
         </DialogContent>
@@ -118,4 +165,4 @@ const FileModal: FC<FileModalProps> = ({ open, handleClose }) => {
   );
 };
 
-export default FileModal;
+export default GalleryModal;

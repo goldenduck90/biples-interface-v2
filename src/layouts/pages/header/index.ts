@@ -1,2 +1,2 @@
-export { default as HomeHeader } from './HomeHeader';
-export { default as PrivateChatHeader } from './PrivateChatHeader';
+export { HeaderHome } from './HeaderHome';
+export { HeaderPrivateChat } from './HeaderPrivateChat';

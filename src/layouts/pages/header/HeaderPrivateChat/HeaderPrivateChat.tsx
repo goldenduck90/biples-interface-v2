@@ -16,14 +16,14 @@ import {
 import { useTheme, styled } from '@mui/material/styles';
 import Image from 'next/image';
 import SimpleBar from 'simplebar-react';
-import SvgColor from '../../../components/svg-color';
+import SvgColor from '../../../../components/svg-color';
 import {
   LEFT_NAV_WIDTH,
   RIGHT_NAV_WIDTH,
   APP_BAR_MOBILE,
   APP_BAR_DESKTOP,
-} from '../../../constants/index';
-// import { COMMUNITIES } from '../../../constansts/communities';
+} from '../../../../constants/index';
+// import { COMMUNITIES } from '../../../../constansts/communities';
 import GalleryModal from './PrivateChat/GalleryModal';
 import FileModal from './PrivateChat/FileModal';
 import LinkModal from './PrivateChat/LinkModal';
@@ -139,9 +139,9 @@ interface TopNavProps {
   onOpenRightNav: () => void;
 }
 
-const PrivateChatHeader: FC<TopNavProps> = ({ onOpenLeftNav, onOpenRightNav }) => {
+const HeaderPrivateChat: FC<TopNavProps> = ({ onOpenLeftNav, onOpenRightNav }) => {
   const theme = useTheme();
-  const {mode} = theme.palette;
+  const { mode } = theme.palette;
 
   const [openGallery, setGalleryOpen] = React.useState(false);
   const handleClickGalleryOpen = () => {
@@ -265,9 +265,9 @@ const PrivateChatHeader: FC<TopNavProps> = ({ onOpenLeftNav, onOpenRightNav }) =
                     fontSize={20}
                     fontWeight={600}
                     sx={{
-                      background: 'linear-gradient(265.96deg, #00A3FF 4.86%, #E140E4 93.41%)',
-                      '-webkit-background-clip': 'text',
-                      '-webkit-text-fill-color': 'transparent',
+                      backgroundImage: 'linear-gradient(85.95deg, #6AF6FF 5.01%, #E140E4 96.48%)',
+                      WebkitBackgroundClip: 'text',
+                      color: 'transparent',
                     }}
                   >
                     Andrew Jackson
@@ -336,4 +336,4 @@ const PrivateChatHeader: FC<TopNavProps> = ({ onOpenLeftNav, onOpenRightNav }) =
   );
 };
 
-export default PrivateChatHeader;
+export default HeaderPrivateChat;
