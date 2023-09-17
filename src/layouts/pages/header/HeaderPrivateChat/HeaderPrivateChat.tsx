@@ -22,6 +22,7 @@ import Scrollbar from '../../../../components/scrollbar';
 import GalleryModal from './GalleryModal';
 import FileModal from './FileModal';
 import LinkModal from './LinkModal';
+import CallModal from './CallModal';
 
 type Props = {
   onOpenNavLeft?: VoidFunction;
@@ -88,6 +89,7 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
   const [openGallery, setOpenGallery] = React.useState(false);
   const [openFile, setOpenFile] = React.useState(false);
   const [openLink, setOpenLink] = React.useState(false);
+  const [openCall, setOpenCall] = React.useState(false);
 
   const handleOpenGallery = () => {
     setOpenGallery(true);
@@ -111,6 +113,14 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
 
   const handleCloseLink = () => {
     setOpenLink(false);
+  };
+
+  const handleOpenCall = () => {
+    setOpenCall(true);
+  };
+
+  const handleCloseCall = () => {
+    setOpenCall(false);
   };
 
   const renderContent = (
@@ -142,7 +152,7 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
               }}
             />
           </StyledIconButton>
-          <StyledIconButton>
+          <StyledIconButton onClick={handleOpenCall}>
             <SvgColor
               src="/assets/images/svgs/videocam.svg"
               sx={{
@@ -152,7 +162,7 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
               }}
             />
           </StyledIconButton>
-          <StyledIconButton>
+          <StyledIconButton onClick={handleOpenCall}>
             <SvgColor
               src="/assets/images/svgs/call.svg"
               sx={{
@@ -239,6 +249,8 @@ export default function HeaderPrivateChat({ onOpenNavLeft, onOpenNavRight }: Pro
       <FileModal open={openFile} handleClose={handleCloseFile} />
 
       <LinkModal open={openLink} handleClose={handleCloseLink} />
+
+      <CallModal open={openCall} handleClose={handleCloseCall} />
     </>
   );
   return (
