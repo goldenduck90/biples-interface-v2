@@ -23,6 +23,10 @@ export const PATH_AUTH = {
 export const PATH_PAGE = {
   root: '/',
   home: '/home',
+  community: {
+    root: '/community',
+    chat: '/community/chat',
+  },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',

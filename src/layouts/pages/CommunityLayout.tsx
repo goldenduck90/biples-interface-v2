@@ -6,7 +6,7 @@ import AuthGuard from '../../auth/AuthGuard';
 //
 import Main from './Main';
 import { HeaderCommunity } from './header';
-import { NavUserInfo, NavHome } from './nav';
+import { NavUserInfo, NavCommunity } from './nav';
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function HomeLayout({ children }: Props) {
+export default function CommunityLayout({ children }: Props) {
   const [openLeft, setOpenLeft] = useState(false);
   const [openRight, setOpenRight] = useState(false);
 
@@ -35,7 +35,7 @@ export default function HomeLayout({ children }: Props) {
   };
 
   const renderNavUserInfo = <NavUserInfo openNav={openLeft} onCloseNav={handleCloseLeft} />;
-  const renderNavHome = <NavHome openNav={openRight} onCloseNav={handleCloseRight} />;
+  const renderNavCommunity = <NavCommunity openNav={openRight} onCloseNav={handleCloseRight} />;
 
   const renderContent = () => (
     <>
@@ -51,7 +51,7 @@ export default function HomeLayout({ children }: Props) {
 
         <Main>{children}</Main>
 
-        {renderNavHome}
+        {renderNavCommunity}
       </Box>
     </>
   );
