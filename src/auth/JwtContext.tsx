@@ -154,27 +154,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   // REGISTER
-  const register = useCallback(
-    async (email: string, password: string, firstName: string, lastName: string) => {
-      const response = await axios.post('/api/account/register', {
-        email,
-        password,
-        firstName,
-        lastName,
-      });
-      const { accessToken, user } = response.data;
+  const register = useCallback(async (email: string, password: string, username: string) => {
+    const response = await axios.post('/api/account/register', {
+      email,
+      password,
+      username,
+    });
+    const { accessToken, user } = response.data;
 
-      localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('accessToken', accessToken);
 
-      dispatch({
-        type: Types.REGISTER,
-        payload: {
-          user,
-        },
-      });
-    },
-    []
-  );
+    dispatch({
+      type: Types.REGISTER,
+      payload: {
+        user,
+      },
+    });
+  }, []);
 
   // LOGOUT
   const logout = useCallback(() => {

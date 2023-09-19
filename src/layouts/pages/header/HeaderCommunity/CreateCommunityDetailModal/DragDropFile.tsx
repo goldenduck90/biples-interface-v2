@@ -54,9 +54,9 @@ const DragDropFile: FC<DragDropFileProps> = () => {
   };
 
   // triggers the input when the button is clicked
-  const onButtonClick = () => {
-    inputRef.current.click();
-  };
+  // const onButtonClick = () => {
+  //   inputRef.current.click();
+  // };
 
   return (
     <Stack
@@ -83,7 +83,8 @@ const DragDropFile: FC<DragDropFileProps> = () => {
       />
       <Stack spacing={2} alignItems="center">
         <Typography variant="body2">Drag and drop your file here or</Typography>
-        <StyledButton variant="contained" onClick={onButtonClick}>
+        <StyledButton variant="contained">
+        {/* <StyledButton variant="contained" onClick={onButtonClick}> */}
           Select file
         </StyledButton>
       </Stack>
