@@ -6,6 +6,7 @@ import {
   Divider,
   Stack,
   Link,
+  Avatar,
   InputAdornment,
   IconButton,
 } from '@mui/material';
@@ -35,18 +36,17 @@ export default function Info() {
   return (
     <Stack
       p={2}
-      spacing={3}
+      spacing={2.5}
       sx={{
         borderRadius: 2,
         bgcolor: 'primary.main',
       }}
     >
       <Stack alignItems="center" justifyContent="center" spacing={0.5}>
-        <Image
-          disabledEffect
-          src="/assets/images/tronwars.png"
+        <Avatar
           alt=""
-          sx={{ width: 60, height: 60 }}
+          src="/assets/images/tronwars.png"
+          sx={{ width: 60, height: 60, bgcolor: 'white' }}
         />
         <Stack direction="row" alignItems="center" spacing={0.5}>
           <Typography variant="subtitle2">Tronwars</Typography>

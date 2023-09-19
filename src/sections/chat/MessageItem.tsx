@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Box, Typography, Badge, Avatar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Image from 'next/image';
+import UserInfo from './UserInfo';
+import Image from '../../components/image';
 
 interface MessageItemProps {
   active: boolean;
@@ -9,6 +11,16 @@ interface MessageItemProps {
 const MessageItem = (props: MessageItemProps) => {
   const { active } = props;
   const theme = useTheme();
+  const [openUserInfo, setOpenUserInfo] = useState<HTMLButtonElement | null>(null);
+
+  const handleOpenUserInfo = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setOpenUserInfo(event.currentTarget);
+  };
+
+  const handleCloseUserInfo = () => {
+    setOpenUserInfo(null);
+  };
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', pb: 2 }}>
       <Box
@@ -29,9 +41,13 @@ const MessageItem = (props: MessageItemProps) => {
                 boxShadow: `0 0 0 2px ${theme.palette.primary.contrastText}`,
               },
             }}
+            onClick={handleOpenUserInfo}
           >
             <Avatar alt="User" src="/assets/images/5.png" sx={{ width: 40, height: 40 }} />
           </Badge>
+
+          <UserInfo open={openUserInfo} handleClose={handleCloseUserInfo} />
+
           <Box
             sx={{
               display: 'flex',
@@ -62,11 +78,10 @@ const MessageItem = (props: MessageItemProps) => {
           }}
         >
           <Image
+            disabledEffect
             src="/assets/icons/double-check.svg"
             alt=""
-            width={18.67}
-            height={10}
-            style={{ width: 'auto', height: '10px' }}
+            sx={{ width: 'auto', height: 10 }}
           />
           <Typography fontSize="10px" color="#697A8D" ml={1}>
             14:40

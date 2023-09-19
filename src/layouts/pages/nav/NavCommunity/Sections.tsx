@@ -1,4 +1,4 @@
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import SvgColor from '../../../../components/svg-color';
 
@@ -75,22 +75,6 @@ const Sections = () => (
       }
     >
       Voice chat
-    </StyledButton>
-    <StyledButton
-      variant="contained"
-      sx={{ mt: 2.5 }}
-      startIcon={
-        <SvgColor
-          src="/assets/images/svgs/invitation.svg"
-          sx={{
-            width: 18,
-            height: 15,
-            color: 'primary.contrastText',
-          }}
-        />
-      }
-    >
-      Invitation
     </StyledButton>
     <StyledButton
       variant="contained"
