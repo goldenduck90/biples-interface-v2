@@ -4,11 +4,11 @@ import Head from 'next/head';
 import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';
 // layouts
-import { CommunityLayout } from '../../layouts/pages';
+import { AdminLayout } from '../../layouts/pages';
 // components
 import { useSettingsContext } from '../../components/settings';
 // sections
-import { Messages } from '../../sections/chat';
+import { Panel } from '../../sections/admin';
 
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -21,7 +21,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-CommunityChat.getLayout = (page: React.ReactElement) => <CommunityLayout>{page}</CommunityLayout>;
+CommunityChat.getLayout = (page: React.ReactElement) => <AdminLayout>{page}</AdminLayout>;
 
 // ----------------------------------------------------------------------
 
@@ -35,12 +35,12 @@ export default function CommunityChat() {
   return (
     <>
       <Head>
-        <title> Community Chat | Biples</title>
+        <title> Admin Panel | Biples</title>
       </Head>
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <StyledRoot>
-          <Messages />
+          <Panel />
         </StyledRoot>
       </Container>
     </>

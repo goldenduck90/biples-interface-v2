@@ -2,16 +2,19 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Stack, Box, Drawer } from '@mui/material';
+import { Stack, Drawer } from '@mui/material';
 // hooks
 import useResponsive from '../../../../hooks/useResponsive';
 // config
 import { NAV } from '../../../../config-global';
 // components
+import Logo from '../../../../components/logo';
 import Scrollbar from '../../../../components/scrollbar';
-import Wallet from './Wallet';
-import Sections from './Sections';
-import Info from './Info';
+//
+import NavButton from './NavButton';
+// import NavNFT from './NavNFT';
+// import NFTSettings from './NFTSettings';
+// import ColorMode from './ColorMode';
 
 // ----------------------------------------------------------------------
 
@@ -20,11 +23,11 @@ type Props = {
   onCloseNav: VoidFunction;
 };
 
-export default function NavCommunity({ openNav, onCloseNav }: Props) {
+export default function NavUserInfo({ openNav, onCloseNav }: Props) {
   const { pathname } = useRouter();
 
   const isDesktop = useResponsive('up', 'lg');
-  
+
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -36,8 +39,8 @@ export default function NavCommunity({ openNav, onCloseNav }: Props) {
     <Scrollbar
       sx={{
         height: 1,
-        pr: 4,
-        pl: 1,
+        pl: 4,
+        pr: 1,
         '& .simplebar-content': {
           height: 1,
           display: 'flex',
@@ -47,34 +50,32 @@ export default function NavCommunity({ openNav, onCloseNav }: Props) {
     >
       <Stack py={6}>
         <Stack mb={4} alignItems="center">
-          <Wallet />
+          <Logo sx={{ width: 'auto', height: 58 }} />
         </Stack>
 
-        <Stack spacing={2.5}>
-          <Info />
-          <Sections />
+        <Stack spacing={2.7}>
+          <NavButton />
         </Stack>
       </Stack>
     </Scrollbar>
   );
 
   return (
-    <Box
+    <Stack
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: NAV.W_RIGHT_NAV },
+        width: { lg: NAV.W_LEFT_NAV },
       }}
     >
       {isDesktop ? (
         <Drawer
-          anchor="right"
           open
           variant="permanent"
           PaperProps={{
             sx: {
               zIndex: 0,
-              width: NAV.W_RIGHT_NAV,
+              width: NAV.W_LEFT_NAV,
               bgcolor: 'transparent',
               border: 'none',
             },
@@ -84,7 +85,6 @@ export default function NavCommunity({ openNav, onCloseNav }: Props) {
         </Drawer>
       ) : (
         <Drawer
-          anchor="right"
           open={openNav}
           onClose={onCloseNav}
           ModalProps={{
@@ -92,13 +92,13 @@ export default function NavCommunity({ openNav, onCloseNav }: Props) {
           }}
           PaperProps={{
             sx: {
-              width: NAV.W_RIGHT_NAV,
+              width: NAV.W_LEFT_NAV,
             },
           }}
         >
           {renderContent}
         </Drawer>
       )}
-    </Box>
+    </Stack>
   );
 }

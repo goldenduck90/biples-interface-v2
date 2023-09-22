@@ -8,7 +8,7 @@ import { CommunityLayout } from '../../layouts/pages';
 // components
 import { useSettingsContext } from '../../components/settings';
 // sections
-import { Messages } from '../../sections/chat';
+import { Teams } from '../../sections/chat';
 
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -40,7 +40,7 @@ export default function CommunityChat() {
 
       <Container maxWidth={themeStretch ? false : 'xl'}>
         <StyledRoot>
-          <Messages />
+          <Teams />
         </StyledRoot>
       </Container>
     </>

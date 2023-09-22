@@ -13,6 +13,7 @@ export default function Index() {
     if (pathname === PATH_PAGE.community.root) {
       replace(PATH_PAGE.community.chat);
     }
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
   return null;
