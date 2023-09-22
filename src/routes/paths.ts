@@ -8,6 +8,11 @@ const ROOTS_AUTH = '/auth';
 const ROOTS_DASHBOARD = '/dashboard';
 
 // ----------------------------------------------------------------------
+export const PATH_ADMIN = {
+  panel:'/admin/panel',
+  overview:'/admin/overview',
+  roles:'/admin/roles',
+};
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
@@ -26,6 +31,7 @@ export const PATH_PAGE = {
   community: {
     root: '/community',
     chat: '/community/chat',
+    team: '/community/team',
   },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',

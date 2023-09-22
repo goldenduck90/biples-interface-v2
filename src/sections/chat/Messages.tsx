@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 // @mui
 import { styled } from '@mui/material/styles';
 import { Stack, Divider, InputAdornment, OutlinedInput, IconButton } from '@mui/material';
@@ -7,7 +9,7 @@ import SvgColor from '../../components/svg-color';
 import MessageItem from './MessageItem';
 // config
 import { HEADER } from '../../config-global';
-
+import  VerifyMessageModal from './VerifyMessageModal';
 
 const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -16,8 +18,20 @@ const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
 }));
 
 export default function Messages() {
+
+  const [openVerifyModal, setOpenVerifyModal] = useState<HTMLButtonElement | null>(null);
+
+  const verifyMessage = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setOpenVerifyModal(event.currentTarget);
+  }
+
+  const handleCloseverifyMessage = () => {
+    setOpenVerifyModal(null);
+  };
+
+
   return (
-    <Stack sx={{ height: `calc(100vh - ${HEADER.H_HOME_DESKTOP + 96 + 48}px)` }}>
+    <Stack sx={{ height: `calc(100vh - ${HEADER.H_HOME_DESKTOP + 96 + 48}px)`}}>
       <Scrollbar
         sx={{
           height: 1,
@@ -33,6 +47,10 @@ export default function Messages() {
         ))}
         <MessageItem active={false} />
       </Scrollbar>
+      <VerifyMessageModal 
+        open = {openVerifyModal} 
+        handleClose = {handleCloseverifyMessage} 
+      />
       <Divider sx={{ color: 'primary.contrastText', mb: 2 }} />
       <StyledOutlinedInput
         defaultValue=""
@@ -49,6 +67,12 @@ export default function Messages() {
             <IconButton>
               <SvgColor
                 src="/assets/images/svgs/mic.svg"
+                sx={{ width: 30, height: 30, color: 'primary.contrastText' }}
+              />
+            </IconButton>
+            <IconButton onClick={verifyMessage}>
+              <SvgColor
+                src="/assets/images/svgs/send.png"
                 sx={{ width: 30, height: 30, color: 'primary.contrastText' }}
               />
             </IconButton>
