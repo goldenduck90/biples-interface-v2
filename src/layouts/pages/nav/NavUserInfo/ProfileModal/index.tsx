@@ -167,7 +167,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ open, handleClose }) => {
   const {
     setValue,
     handleSubmit,
-    formState: { isSubmitting },
+    // formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: FormValuesProps) => {

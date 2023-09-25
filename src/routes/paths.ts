@@ -32,6 +32,10 @@ export const PATH_PAGE = {
     root: '/community',
     chat: '/community/chat',
     team: '/community/team',
+    voiceChart:{
+      create: '/voiceChat',
+      person:'/voiceChatPerson'
+    }
   },
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',

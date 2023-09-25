@@ -1,17 +1,18 @@
 import * as Yup from 'yup';
 import * as React from 'react';
-import { ChangeEvent, FC, useState, useCallback, useRef } from 'react';
-// import { useTheme, styled } from '@mui/material/styles';
+import { ChangeEvent,useState, useCallback } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import {
   Box,
-  // Image,
   Button,
   Stack,
   Typography,
   Divider,
   TextField,
+  FormControlLabel, 
+  Checkbox,
 } from '@mui/material';
+
 // form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,9 +21,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import {
   StyledButton
 } from './styles';
-import { CustomFile } from '../../components/upload';
+import { CustomFile, ImageUpload } from '../../components/upload';
 import { useSnackbar } from '../../components/snackbar';
 import FormProvider, { RHFUploadAvatar, RHFTextField } from '../../components/hook-form';
+import Image from '../../components/image';
 
 export interface DialogTitleProps {
   id: string;
@@ -79,7 +81,7 @@ export default function Panel() {
   const {
     setValue,
     handleSubmit,
-    formState: { isSubmitting },
+    // formState: { isSubmitting },
   } = methods;
   
   const { enqueueSnackbar } = useSnackbar();
@@ -106,13 +108,29 @@ export default function Panel() {
       enqueueSnackbar(error.message, { variant: 'error' });
     }
   };
-  
-  // const uploadAvatarRef = useRef(null);
+  // Private check buttom
+  const [privateVisible, setPrivate] = useState<boolean>(true);
+  const handlePrivate = (event: ChangeEvent<HTMLInputElement>) => {
+    setPrivate(event.target.checked);
+  };
 
-  // const uploadFile =() => {
-  //   // uploadAvatarRef.current.click();
-  // };
+  const [publicVisible, setPublic] = useState<boolean>(false);
+  const handlePublic = (event: ChangeEvent<HTMLInputElement>) => {
+    setPublic(event.target.checked);
+  };
   
+  const [file, setFile] = useState<File | string | null>(null);
+  const handleDropSingleFile = useCallback((acceptedFiles: File[]) => {
+    const newFile = acceptedFiles[0];
+    if (newFile) {
+      setFile(
+        Object.assign(newFile, {
+          preview: URL.createObjectURL(newFile),
+        })
+      );
+    }
+  }, []);
+
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack 
@@ -151,19 +169,17 @@ export default function Panel() {
                   <StyledButton 
                     sx={{
                       color: '#FFF',
-                      fontFeatureSettings:'"clig" off, "liga" off',
-                      fontSize:15,
-                      fontStyle:'normal',
-                      fontFamily:'TT Firs Neue',
-                      fontWeight:600,
-                      letterSpacing:'-0.333px',
                       marginTop:6,
                       maxWidth: '240px',
                       minWidth: '150px',
                     }}
                     // onClick={VerifyHandle}
                   >
-                    Upload Image
+                    <Typography
+                      variant='button'
+                    >
+                      Upload Image
+                    </Typography>
                   </StyledButton>
                   <Typography
                     color='grey'
@@ -181,17 +197,14 @@ export default function Panel() {
               spacing={1}
               pt={3}
             >
-              <Typography sx={{fontSize: '20px'}}>
+              <Typography 
+                variant='subtitle2'
+              >
                 Server Name*
               </Typography>
               <RHFTextField
                 sx={{
-                  color:'#565A7F',
                   borderRadius:'8px',
-                  fontSize: '12px',
-                  fontWeight:400,
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  letterSpacing:'-0.333px',
                   minWidth: '150px',
                   backgroundColor:'var(--frame-fill, rgba(104, 104, 104, 0.22))'
                 }}
@@ -199,6 +212,14 @@ export default function Panel() {
                 placeholder="Server name here..."
                 label=""
                 InputLabelProps={{ shrink: false }}
+                inputProps={{
+                  style: {
+                    color:'#565A7F',
+                    borderRadius:'8px',
+                    fontSize: '12px',
+                    height:'16px'
+                  }
+                }}
               />
             </Stack>
           </Grid>
@@ -215,83 +236,28 @@ export default function Panel() {
         <Grid container columnSpacing={{ xl: 5, md:4, sm: 3, xs:3 }}>
           <Grid xl={6} md={6} sm={12} xs={12} >
             <Stack spacing={1} >
-              <Typography sx={{fontSize: '20px'}}>
+              <Typography 
+                variant='subtitle2'
+                mt={0.5}
+              >
                 Background Image
               </Typography>
-              <Box
-                sx={{
-                  height: '142px',
-                  minWidth: '140px',
-                  align: 'center',
-                  borderRadius:'8px',
-                  textAlign:'center',
-                  padding:'30px',
-                  border: '0.5px dashed var(--ligh-text, #F0F0F0)',
-                }}
-              >
-                <Typography 
-                  sx={{fontSize: '12px'}}
-                >
-                  Drag and drop file here
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '12px',
-                    marginBottom: 1,
-                    }}
-                >
-                  or
-                </Typography>
-                <StyledButton 
-                  sx={{
-                    color: '#FFF',
-                    fontFeatureSettings:'"clig" off, "liga" off',
-                    fontSize:15,
-                    fontStyle:'normal',
-                    fontFamily:'TT Firs Neue',
-                    fontWeight:600,
-                    letterSpacing:'-0.333px',
-                    height:25,
-                    minWidth:100
-                  }}
-                >
-                  <Typography sx={{fontSize: '13px'}}>
-                    Select file
-                  </Typography>
-                  {/* <RHFUploadAvatar name="photoURL" maxSize={3145728} onDrop={handleDrop} /> */}
-                </StyledButton>
-                <Typography
-                  sx={{
-                    margin:'10px',
-                    color:'#565A7F',
-                    fontSize: '10px',
-                    fontWeight:400,
-                    letterSpacing:'-0.333px',
-                  }}
-                >
-                  The image will appear when a member wants to join your channet via an invitation link
-                </Typography>
-              </Box>
+              <ImageUpload file={file} onDrop={handleDropSingleFile} onDelete={() => setFile(null)} />
             </Stack>
           </Grid>
           <Grid xl={6} md={6} sm={12} xs={12}>
             <Stack spacing={1} >
-              <Typography sx={{fontSize: '20px'}}>
+              <Typography 
+                variant='subtitle1'
+              >
                 Description
               </Typography>
               <TextField 
                 sx={{
                   height: '142px',
                   minWidth: '140px',
-                  align: 'center',
-                  color:'#565A7F',
                   borderRadius:'8px',
-                  textAlign:'center',
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  letterSpacing:'-0.333px',
-                  fontWeight:400,
-                  fontSize: '12px',
-                  backgroundColor:'var(--frame-fill, rgba(104, 104, 104, 0.22))',
+                  backgroundColor:'var(--frame-fill, rgba(104, 104, 104, 0.22))'
                 }}
                 multiline
                 rows={5}
@@ -300,7 +266,13 @@ export default function Panel() {
                 label=""
                 variant="outlined"
                 InputLabelProps={{ shrink: false }}
-                // multiline
+                inputProps={{
+                  style: {
+                    color:'#565A7F',
+                    borderRadius:'8px',
+                    fontSize: '12px',
+                  }
+                }}
               />
             </Stack>
           </Grid>
@@ -316,7 +288,9 @@ export default function Panel() {
         <Grid container columnSpacing={{ xl: 5, md:4, sm: 3, xs:3 }}>
           <Grid xl={4} md={4} sm={12} xs={12}>
             <Stack spacing={1}>
-              <Typography sx={{fontSize: '20px'}}>
+              <Typography 
+                variant='subtitle1'
+              >
                 Twitter*
               </Typography>
               <RHFTextField
@@ -342,7 +316,9 @@ export default function Panel() {
           </Grid>
           <Grid xl={4} md={4} sm={12} xs={12}>
             <Stack spacing={1}>
-            <Typography sx={{fontSize: '20px'}}>
+            <Typography 
+              variant='subtitle1'
+            >
               Medium
             </Typography>
             <RHFTextField
@@ -352,7 +328,6 @@ export default function Panel() {
               InputLabelProps={{ shrink: false }}
               inputProps={{
                 style: {
-                  color:'#565A7F',
                   borderRadius:'8px',
                   fontSize: '12px',
                   fontWeight:400,
@@ -368,7 +343,9 @@ export default function Panel() {
           </Grid>
           <Grid xl={4} md={4} sm={12} xs={12}>
             <Stack spacing={1}>
-            <Typography sx={{fontSize: '20px'}}>
+            <Typography 
+              variant='subtitle1'
+            >
               Website
             </Typography>
             <RHFTextField
@@ -382,7 +359,6 @@ export default function Panel() {
                   borderRadius:'8px',
                   fontSize: '12px',
                   fontWeight:400,
-                  fontFeatureSettings:'"clig" off, "liga" off',
                   letterSpacing:'-0.333px',
                   height: '12px',
                   minWidth: '100px',
@@ -399,30 +375,62 @@ export default function Panel() {
         sx={{marginLeft:6, marginRight:6}}
       >
         <Grid container columnSpacing={{ xl: 5, md:4, sm: 3, xs:3 }}>
+          <Grid xl={6} md={6} sm={12} xs={12}>
+            <Stack spacing={1} pt={2} > 
+              <Typography
+                variant ='subtitle2'
+              >
+                Access
+              </Typography>
+              <Typography
+                variant='body2'
+              >
+                Decide who can join your community
+              </Typography>
+            </Stack>
+          </Grid>
           <Grid xl={3} md={3} sm={12} xs={12}>
             <Stack spacing={1} pt={2} > 
               <StyledButton 
                 sx={{
-                  color: '#FFF',
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  fontSize:15,
-                  fontStyle:'normal',
-                  fontFamily:'TT Firs Neue',
-                  fontWeight:600,
-                  letterSpacing:'-0.333px',
                   maxWidth: '240px',
                   minWidth: '150px',
                 }}
                 // onClick={VerifyHandle}
               >
-                Upload Image
+                <FormControlLabel
+                  control={
+                  <Checkbox
+                    checked={privateVisible}
+                    onChange={handlePrivate}
+                    icon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/auth/unchecked.svg"
+                        alt=""
+                        sx={{ width: 12, height: 'auto' }}
+                      />
+                    }
+                    checkedIcon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/auth/checked.svg"
+                        alt=""
+                        sx={{ width: 12, height: 'auto' }}
+                      />
+                    }
+                    inputProps={{ 'aria-label': 'controlled' }}
+                  />
+                  }
+                  label="Private"
+                />
               </StyledButton>
+              
               <Typography
-                color='grey'
                 align='center'
-                fontSize={11} 
+                variant='body2'
               >
-                We recommend an image of at least 512x512px.
+                With invitation
               </Typography>
             </Stack>
           </Grid>
@@ -442,68 +450,38 @@ export default function Panel() {
                 }}
                 // onClick={VerifyHandle}
               >
-                Upload Image
+                <FormControlLabel
+                  control={
+                  <Checkbox
+                    checked={publicVisible}
+                    onChange={handlePublic}
+                    icon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/auth/unchecked.svg"
+                        alt=""
+                        sx={{ width: 12, height: 'auto' }}
+                      />
+                    }
+                    checkedIcon={
+                      <Image
+                        disabledEffect
+                        src="/assets/images/auth/checked.svg"
+                        alt=""
+                        sx={{ width: 12, height: 'auto' }}
+                      />
+                    }
+                    inputProps={{ 'aria-label': 'controlled' }}
+                  />
+                  }
+                  label="Public"
+                />
               </StyledButton>
               <Typography
-                color='grey'
-                align='center'
-                fontSize={11} 
+                 align='center'
+                 variant='body2'
               >
-                We recommend an image of at least 512x512px.
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid xl={3} md={3} sm={12} xs={12}>
-            <Stack spacing={1} pt={2} > 
-              <StyledButton 
-                sx={{
-                  color: '#FFF',
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  fontSize:15,
-                  fontStyle:'normal',
-                  fontFamily:'TT Firs Neue',
-                  fontWeight:600,
-                  letterSpacing:'-0.333px',
-                  maxWidth: '240px',
-                  minWidth: '150px',
-                }}
-                // onClick={VerifyHandle}
-              >
-                Upload Image
-              </StyledButton>
-              <Typography
-                color='grey'
-                align='center'
-                fontSize={11} 
-              >
-                We recommend an image of at least 512x512px.
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid xl={3} md={3} sm={12} xs={12}>
-            <Stack spacing={1} pt={2} > 
-              <StyledButton 
-                sx={{
-                  color: '#FFF',
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  fontSize:15,
-                  fontStyle:'normal',
-                  fontFamily:'TT Firs Neue',
-                  fontWeight:600,
-                  letterSpacing:'-0.333px',
-                  maxWidth: '240px',
-                  minWidth: '150px',
-                }}
-                // onClick={VerifyHandle}
-              >
-                Upload Image
-              </StyledButton>
-              <Typography
-                color='grey'
-                align='center'
-                fontSize={11} 
-              >
-                We recommend an image of at least 512x512px.
+                Everyone can find your channel
               </Typography>
             </Stack>
           </Grid>
@@ -515,8 +493,7 @@ export default function Panel() {
           <Grid xl={4} md={3} sm={12} xs={12}>
             <Stack spacing={1} > 
               <Typography
-                color='white'
-                fontSize={13} 
+                variant='subtitle2' 
               >
                 Personalized invitation link
               </Typography>
@@ -546,17 +523,17 @@ export default function Panel() {
               <Button 
                 sx={{
                   backgroundColor:'var(--bg-color, #111)',
-                  color: '#FFF',
-                  fontSize:15,
-                  width:'44px',
-                  height:'47px',
-                  fontStyle:'normal',
-                  fontFamily:'TT Firs Neue',
-                  fontWeight:600,
-                  // minWidth: '150px',
+                  width:'30px',
+                  height:'45px',
+                  marginTop:'10px'
                 }}
               >
-               s
+                <Image 
+                  disabledEffect
+                  src="/assets/images/svgs/Before.svg"
+                  alt=""
+                  sx={{ width: 20, height: 'auto' }}
+                />
               </Button>
             </Stack>
           </Grid>
@@ -564,19 +541,18 @@ export default function Panel() {
             <Stack spacing={1} pt={2} pl={9}> 
               <Button 
                 sx={{
+                  marginTop:'15px',
                   backgroundColor: '#E82B2B',
                   color: '#FFF',
-                  fontFeatureSettings:'"clig" off, "liga" off',
-                  fontSize:15,
                   height:45,
-                  fontStyle:'normal',
-                  fontFamily:'TT Firs Neue',
-                  fontWeight:600,
-                  letterSpacing:'-0.333px',
                 }}
                 // onClick={VerifyHandle}
               >
-                Delete your channel
+                <Typography
+                  variant='button'
+                >
+                  Delete your channel
+                </Typography>
               </Button>
             </Stack>
           </Grid>
