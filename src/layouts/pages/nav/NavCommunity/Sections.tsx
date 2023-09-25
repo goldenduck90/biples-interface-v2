@@ -90,8 +90,7 @@ const Sections = () => {
             }}
           />
         }
-        // onClick={() => handleButtonClick('voiceChat')}
-        onClick={() => handleButtonClick('chat')}
+        onClick={() => handleButtonClick('voiceChat')}
       >
         Voice chat
       </StyledButton>

@@ -17,7 +17,7 @@ const TeamItem = () => {
     <Card 
       sx={{ 
         p:0,
-        maxWidth:360, 
+        maxWidth:350, 
         maxHeight:340,
         backgroundColor:'#151515',
         alignItems:'center'

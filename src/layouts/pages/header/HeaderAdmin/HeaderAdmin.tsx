@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // next
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
 import {
@@ -18,7 +18,7 @@ import useResponsive from '../../../../hooks/useResponsive';
 // config
 import { HEADER, NAV } from '../../../../config-global';
 // routes
-import { PATH_ADMIN } from '../../../../routes/paths';
+// import { PATH_ADMIN } from '../../../../routes/paths';
 // components
 import Iconify from '../../../../components/iconify';
 import Scrollbar from '../../../../components/scrollbar';
@@ -81,7 +81,7 @@ export default function HeaderCommunity({ onOpenNavLeft, onOpenNavRight }: Props
 
   const theme = useTheme();
  
-  const { pathname, push } = useRouter();
+  // const { pathname, push } = useRouter();
 
   const isDesktop = useResponsive('up', 'lg');
 

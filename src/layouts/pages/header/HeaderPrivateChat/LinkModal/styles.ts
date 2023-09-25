@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Button, Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 
 export const StyledActionGroupBox = styled(Box)(({ theme }) => ({
   alignItems: 'center',
