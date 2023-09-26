@@ -14,7 +14,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function CommunityLayout({ children }: Props) {
+export default function AdminLayout({ children }: Props) {
   const [openLeft, setOpenLeft] = useState(false);
   const [openRight, setOpenRight] = useState(false);
 
