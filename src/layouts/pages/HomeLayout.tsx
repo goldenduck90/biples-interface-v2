@@ -5,18 +5,21 @@ import { Box } from '@mui/material';
 import AuthGuard from '../../auth/AuthGuard';
 //
 import Main from './Main';
-import { HeaderCommunity } from './header';
-import { NavUserInfo, NavHome } from './nav';
+import { HeaderCommunity, HeaderPrivateChat } from './header';
+import { NavUserInfo, NavHome, NavPrivateChat, NavCommunity } from './nav';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  children?: React.ReactNode;
+  children?: React.ReactNode,
+  displayLayout: string;
 };
 
-export default function HomeLayout({ children }: Props) {
+export default function HomeLayout( props:Props) {
   const [openLeft, setOpenLeft] = useState(false);
   const [openRight, setOpenRight] = useState(false);
+
+  const {displayLayout,children} = props;
 
   const handleOpenLeft = () => {
     setOpenLeft(true);
@@ -36,25 +39,65 @@ export default function HomeLayout({ children }: Props) {
 
   const renderNavUserInfo = <NavUserInfo openNav={openLeft} onCloseNav={handleCloseLeft} />;
   const renderNavHome = <NavHome openNav={openRight} onCloseNav={handleCloseRight} />;
+  const renderNavPrivateChat = <NavPrivateChat openNav={openRight} onCloseNav={handleCloseRight} />;
+  const renderNavCommunity = <NavCommunity openNav={openRight} onCloseNav={handleCloseRight} />;
 
-  const renderContent = () => (
-    <>
-      <HeaderCommunity onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
+  let renderContent;
+  if (displayLayout === 'private') {
+    renderContent = (
+      <>
+        <HeaderPrivateChat onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
 
-      <Box
-        sx={{
-          display: { lg: 'flex' },
-          minHeight: { lg: 1 },
-        }}
-      >
-        {renderNavUserInfo}
+        <Box
+          sx={{
+            display: { lg: 'flex' },
+            minHeight: { lg: 1 },
+          }}
+        >
+          {renderNavUserInfo}
 
-        <Main>{children}</Main>
+          <Main>{children}</Main>
+          {renderNavPrivateChat}
+        </Box>
+      </>
+    );
+  } else if (displayLayout === 'home') {
+    renderContent = (
+      <>
+        <HeaderCommunity onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
 
-        {renderNavHome}
-      </Box>
-    </>
-  );
+        <Box
+          sx={{
+            display: { lg: 'flex' },
+            minHeight: { lg: 1 },
+          }}
+        >
+          {renderNavUserInfo}
 
-  return <AuthGuard> {renderContent()} </AuthGuard>;
+          <Main>{children}</Main>
+          {renderNavHome}
+        </Box>
+      </>
+    );
+  } else if (displayLayout === 'community') {
+    renderContent = (
+      <>
+        <HeaderCommunity onOpenNavLeft={handleOpenLeft} onOpenNavRight={handleOpenRight} />
+
+        <Box
+          sx={{
+            display: { lg: 'flex' },
+            minHeight: { lg: 1 },
+          }}
+        >
+          {renderNavUserInfo}
+
+          <Main>{children}</Main>
+          {renderNavCommunity}
+        </Box>
+      </>
+    );
+  }
+    
+  return (<AuthGuard> {renderContent} </AuthGuard>);
 }

@@ -132,8 +132,12 @@ export default function HeaderCommunity({ onOpenNavLeft, onOpenNavRight }: Props
     setOpenJoinCommunity(false);
   };
 
+  // const handleClickCommunity = (route:string) => {
+  //   push(`/community/${route}`);
+  // };
+
   const handleClickCommunity = () => {
-    push(PATH_PAGE.community.root);
+    push(PATH_PAGE.community.chat);
   };
 
   const renderContent = (
@@ -175,7 +179,9 @@ export default function HeaderCommunity({ onOpenNavLeft, onOpenNavRight }: Props
             <StyledCommunityButton
               key={item.name}
               variant="contained"
-              onClick={handleClickCommunity}
+              onClick={() => handleClickCommunity()}
+              // onClick={() => handleClickCommunity(`${item.name}`)}
+              // onClick={handleClickCommunity}
               onContextMenu={handleContextMenu}
               startIcon={
                 <CustomAvatar

@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';
 // layouts
-import { PrivateChatLayout } from '../layouts/pages';
+import { HomeLayout } from '../layouts/pages';
 // components
 import { useSettingsContext } from '../components/settings';
 // sections
@@ -20,7 +20,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-PrivateChat.getLayout = (page: React.ReactElement) => <PrivateChatLayout>{page}</PrivateChatLayout>;
+PrivateChat.getLayout = (page: React.ReactElement) => <HomeLayout displayLayout = 'private'>{page}</HomeLayout>;
 
 // ----------------------------------------------------------------------
 

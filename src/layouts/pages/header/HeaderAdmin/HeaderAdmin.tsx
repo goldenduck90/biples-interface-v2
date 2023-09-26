@@ -58,7 +58,7 @@ const StyledAdminPanel = styled(Button)(({ theme }) => ({
   minWidth: 180,
 }));
 
-export default function HeaderCommunity({ onOpenNavLeft, onOpenNavRight }: Props) {
+export default function HeaderAdmin({ onOpenNavLeft, onOpenNavRight }: Props) {
   const [contextMenu, setContextMenu] = useState<{
     mouseX: number;
     mouseY: number;

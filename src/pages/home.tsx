@@ -19,7 +19,7 @@ const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-HomePage.getLayout = (page: React.ReactElement) => <HomeLayout>{page}</HomeLayout>;
+HomePage.getLayout = (page: React.ReactElement) => <HomeLayout displayLayout = 'home'>{page}</HomeLayout>;
 
 // ----------------------------------------------------------------------
 
